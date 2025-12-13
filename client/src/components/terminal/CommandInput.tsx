@@ -66,7 +66,7 @@ export function CommandInput({ onCommand }: CommandInputProps) {
     switch (command) {
       case "help":
       case "ls":
-        // Help is usually shown in UI, but we can toast or handle globally
+        setLocation("/ls");
         break;
       case "home":
       case "intro":
@@ -90,8 +90,8 @@ export function CommandInput({ onCommand }: CommandInputProps) {
         break;
       case "resume":
       case "cv":
-        window.open("/resume.pdf", "_blank"); // Mock resume download
-        toast({ title: "Downloading resume...", className: "font-mono bg-zinc-900 text-white border-zinc-800" });
+        window.open("/resume.pdf", "_blank");
+        toast({ title: "Downloading resume...", className: "font-mono bg-zinc-900 text-white border-zinc-800", duration: 5000 });
         break;
       case "preview":
       case "open":
@@ -101,10 +101,10 @@ export function CommandInput({ onCommand }: CommandInputProps) {
             if (project) {
                 setLocation(`/project/${project.id}`);
             } else {
-                toast({ title: `Project '${arg}' not found`, variant: "destructive", className: "font-mono" });
+                toast({ title: `Project '${arg}' not found`, variant: "destructive", className: "font-mono", duration: 5000 });
             }
         } else {
-            toast({ title: "Usage: preview <project_name>", className: "font-mono bg-zinc-900 text-white border-zinc-800" });
+            toast({ title: "Usage: preview <project_name>", className: "font-mono bg-zinc-900 text-white border-zinc-800", duration: 5000 });
         }
         break;
       case "repo":
@@ -113,19 +113,14 @@ export function CommandInput({ onCommand }: CommandInputProps) {
             if (project) {
                 window.open(project.links.repo, "_blank");
             } else {
-                toast({ title: `Project '${arg}' not found`, variant: "destructive", className: "font-mono" });
+                toast({ title: `Project '${arg}' not found`, variant: "destructive", className: "font-mono", duration: 5000 });
             }
         }
         break;
-      case "ai":
-        setLocation("/projects"); // Or a specific AI page if needed
-        break;
       default:
-        toast({ title: `Command not found: ${command}`, variant: "destructive", className: "font-mono" });
+        toast({ title: `Command not found: ${command}`, variant: "destructive", className: "font-mono", duration: 5000 });
     }
   };
-
-  // Suggestion bar content based on current page could be cool, but sticking to static for now as per design
   
   return (
     <div className="w-full flex flex-col gap-2">
@@ -136,20 +131,25 @@ export function CommandInput({ onCommand }: CommandInputProps) {
                 {c.cmd}
             </span>
         ))}
-        <span>|</span>
-        <span className="animate-pulse">█</span>
       </div>
       
-      <div className="flex items-center w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-3 shadow-lg backdrop-blur-sm focus-within:ring-1 focus-within:ring-zinc-700 transition-all">
-        <span className="text-emerald-500 font-bold mr-3 font-mono">$</span>
+      <div className="relative flex items-center w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-3 shadow-lg backdrop-blur-sm focus-within:ring-1 focus-within:ring-zinc-700 transition-all cursor-text overflow-hidden" onClick={() => inputRef.current?.focus()}>
+        <span className="text-emerald-500 font-bold mr-3 font-mono shrink-0">$</span>
+        
+        {/* Custom Input Display with Block Cursor */}
+        <div className="flex-1 font-mono text-zinc-100 whitespace-pre overflow-hidden">
+             {input}
+             <span className="cursor-block align-middle ml-1"></span>
+        </div>
+
+        {/* Hidden Input for functionality */}
         <input
           ref={inputRef}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent border-none outline-none font-mono text-zinc-100 placeholder:text-zinc-600"
-          placeholder="type a command..."
+          className="absolute inset-0 w-full h-full opacity-0 cursor-text"
           autoComplete="off"
           autoFocus
         />
@@ -157,7 +157,7 @@ export function CommandInput({ onCommand }: CommandInputProps) {
       
       {/* Quick Nav Buttons (Bottom Bar) */}
       <div className="flex justify-center gap-4 mt-2 font-mono text-xs text-zinc-500">
-        {["projects", "skills", "ai", "resume", "contact"].map(cmd => (
+        {["projects", "skills", "ls", "resume", "contact"].map(cmd => (
             <button 
                 key={cmd}
                 onClick={() => processCommand(cmd)}

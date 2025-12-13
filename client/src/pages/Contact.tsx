@@ -1,35 +1,76 @@
 
 import { TerminalLayout } from "@/components/layout/TerminalLayout";
 import { SOCIALS } from "@/lib/constants";
-import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 
-interface ContactForm {
-  from: string;
-  subject: string;
-  message: string;
-}
+type Step = "NAME" | "LINKEDIN" | "MESSAGE" | "CONFIRM";
 
 export default function Contact() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactForm>();
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [step, setStep] = useState<Step>("NAME");
+  const [history, setHistory] = useState<{ label: string; value: string }[]>([]);
+  const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  
+  // Data store
+  const [formData, setFormData] = useState({
+    name: "",
+    linkedin: "",
+    message: ""
+  });
 
-  const onSubmit = async (data: ContactForm) => {
-    setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Message queued successfully",
-      description: "Output: 200 OK. Message sent to /dev/null (simulated).",
-      className: "font-mono bg-zinc-900 text-emerald-400 border-zinc-800"
-    });
-    
-    reset();
-    setIsSubmitting(false);
+  useEffect(() => {
+    // Focus input whenever step changes
+    inputRef.current?.focus();
+  }, [step]);
+
+  const handleKeyDown = async (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+        if (!inputValue.trim()) return;
+        
+        const value = inputValue.trim();
+        setInputValue("");
+
+        if (step === "NAME") {
+            setHistory(prev => [...prev, { label: "type your name ...", value }]);
+            setFormData(prev => ({ ...prev, name: value }));
+            setStep("LINKEDIN");
+        } else if (step === "LINKEDIN") {
+             setHistory(prev => [...prev, { label: "type your linkedin_id ...", value }]);
+             setFormData(prev => ({ ...prev, linkedin: value }));
+             setStep("MESSAGE");
+        } else if (step === "MESSAGE") {
+             setHistory(prev => [...prev, { label: "type message", value }]);
+             setFormData(prev => ({ ...prev, message: value }));
+             setStep("CONFIRM");
+             
+             // Simulate sending
+             toast({
+                title: "Processing...",
+                description: "Encrypting and sending payload.",
+                className: "font-mono bg-zinc-900 text-yellow-400 border-zinc-800",
+                duration: 2000
+             });
+
+             await new Promise(resolve => setTimeout(resolve, 2000));
+             
+             toast({
+                title: "Message Sent",
+                description: `Delivered to ${SOCIALS.email}`,
+                className: "font-mono bg-zinc-900 text-emerald-400 border-zinc-800",
+                duration: 5000
+             });
+
+             // Reset after delay
+             setTimeout(() => {
+                 setStep("NAME");
+                 setHistory([]);
+                 setFormData({ name: "", linkedin: "", message: "" });
+             }, 5000);
+        }
+    }
   };
 
   return (
@@ -42,11 +83,66 @@ export default function Contact() {
         </div>
         
         <div className="text-zinc-500 text-sm italic">
-             → Reach out using any method below or compose a message.
+             → Reach out using any method below or initialize secure channel.
         </div>
 
-        {/* Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Interactive CLI Form */}
+        <div className="border border-zinc-800 rounded-lg p-6 bg-black/50 font-mono text-sm shadow-inner min-h-[300px] flex flex-col" onClick={() => inputRef.current?.focus()}>
+            <div className="text-zinc-500 mb-6 text-xs border-b border-zinc-800 pb-2">
+                <span className="text-emerald-500 font-bold mr-2">$</span>
+                <span>secure-channel --init</span>
+            </div>
+
+            <div className="flex-1 space-y-4">
+                {/* History */}
+                {history.map((item, i) => (
+                    <div key={i} className="space-y-1">
+                        <div className="text-zinc-500 flex items-center gap-2">
+                            <span className="text-emerald-500 font-bold">?</span>
+                            <span>{item.label}</span>
+                        </div>
+                        <div className="text-zinc-100 pl-6">{item.value}</div>
+                    </div>
+                ))}
+
+                {/* Current Prompt */}
+                {step !== "CONFIRM" && (
+                    <div className="space-y-1">
+                         <div className="text-emerald-400 flex items-center gap-2">
+                            <span className="text-emerald-500 font-bold">?</span>
+                            <span>
+                                {step === "NAME" && "type your name ..."}
+                                {step === "LINKEDIN" && "type your linkedin_id ..."}
+                                {step === "MESSAGE" && "type message"}
+                            </span>
+                        </div>
+                        <div className="relative pl-6">
+                            <span className="text-white whitespace-pre">{inputValue}</span>
+                            <span className="cursor-block align-middle ml-1"></span>
+                            <input 
+                                ref={inputRef}
+                                type="text" 
+                                value={inputValue}
+                                onChange={e => setInputValue(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                className="absolute inset-0 w-full h-full opacity-0 cursor-text"
+                                autoFocus
+                            />
+                        </div>
+                    </div>
+                )}
+                
+                {step === "CONFIRM" && (
+                    <div className="text-emerald-500 mt-4">
+                        <p>&gt; Transmission complete.</p>
+                        <p>&gt; Resetting channel in 5s...</p>
+                    </div>
+                )}
+            </div>
+        </div>
+
+        {/* Info Cards (Existing) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-zinc-900">
             
             {/* Direct */}
             <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/10">
@@ -92,79 +188,6 @@ export default function Contact() {
                 </div>
             </div>
 
-        </div>
-
-        {/* Compose Form */}
-        <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/10">
-            <div className="text-zinc-500 mb-4 text-xs">
-                <span className="text-emerald-500 font-bold mr-2">$</span>
-                <span>compose</span>
-            </div>
-            
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-mono text-sm">
-                
-                <div className="space-y-1">
-                    <label className="text-zinc-500 text-xs ml-1">from</label>
-                    <input 
-                        {...register("from", { required: true })}
-                        className="w-full bg-black border border-zinc-800 rounded p-3 text-zinc-300 focus:border-emerald-500/50 focus:outline-none transition-colors"
-                        placeholder="your@email.com"
-                    />
-                    {errors.from && <span className="text-red-500 text-xs">Required</span>}
-                </div>
-
-                <div className="space-y-1">
-                    <label className="text-zinc-500 text-xs ml-1">subject</label>
-                    <input 
-                        {...register("subject", { required: true })}
-                        className="w-full bg-black border border-zinc-800 rounded p-3 text-zinc-300 focus:border-emerald-500/50 focus:outline-none transition-colors"
-                        placeholder="Wanna Collab?"
-                    />
-                     {errors.subject && <span className="text-red-500 text-xs">Required</span>}
-                </div>
-
-                <div className="space-y-1">
-                    <label className="text-zinc-500 text-xs ml-1">message</label>
-                    <textarea 
-                        {...register("message", { required: true })}
-                        rows={5}
-                        className="w-full bg-black border border-zinc-800 rounded p-3 text-zinc-300 focus:border-emerald-500/50 focus:outline-none transition-colors resize-none"
-                        placeholder="Hi Madhesh, I'd like to discuss a project..."
-                    />
-                     {errors.message && <span className="text-red-500 text-xs">Required</span>}
-                </div>
-
-                <div className="flex justify-end gap-3 pt-2">
-                    <button type="button" onClick={() => reset()} className="px-4 py-2 text-xs text-zinc-500 hover:text-white transition-colors">
-                        clear
-                    </button>
-                    <button 
-                        type="submit" 
-                        disabled={isSubmitting}
-                        className="px-6 py-2 bg-zinc-100 text-black font-bold text-xs rounded hover:bg-emerald-400 transition-colors disabled:opacity-50"
-                    >
-                        {isSubmitting ? "sending..." : "send"}
-                    </button>
-                </div>
-
-            </form>
-        </div>
-
-        {/* Availability Footer */}
-        <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/10 flex flex-col md:flex-row gap-4 justify-between items-center text-xs text-zinc-500">
-             <div className="flex items-center gap-2">
-                <span className="text-emerald-500 font-bold">$</span>
-                <span>availability</span>
-             </div>
-             <div className="flex gap-6">
-                <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                    <span>New projects from Jan 2026</span>
-                </div>
-                 <div className="flex items-center gap-2">
-                    <span>Typical response: &lt; 24h</span>
-                </div>
-             </div>
         </div>
 
       </div>

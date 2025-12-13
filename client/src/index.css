@@ -33,7 +33,7 @@
   --color-ring: hsl(0 0% 80%);
   
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
-  --font-sans: "JetBrains Mono", "Fira Code", monospace; /* Force monospace everywhere */
+  --font-sans: "JetBrains Mono", "Fira Code", monospace;
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -58,6 +58,24 @@
   .terminal-cursor {
     animation: blink 1s step-end infinite;
   }
+  
+  .cursor-block {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.2em;
+    background-color: #10b981; /* Emerald 500 */
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+  
+  .cursor-block-white {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.2em;
+    background-color: #fff;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
 
   @keyframes blink {
     0%, 100% { opacity: 1; }
@@ -71,5 +89,24 @@
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  
+  /* Matrix/Typewriter Effect Classes */
+  .typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid transparent;
+  }
+  
+  .text-reveal-green {
+    color: #10b981; /* Emerald 500 */
+    animation: to-white 0.5s ease-in-out forwards;
+    animation-delay: 1s; /* Wait for typing to finish roughly */
+  }
+  
+  @keyframes to-white {
+    to {
+        color: #e4e4e7; /* Zinc 200 */
+    }
   }
 }

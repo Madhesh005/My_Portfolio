@@ -112,10 +112,9 @@ export const SOCIALS = {
 };
 
 export const COMMANDS = [
-  { cmd: "help", desc: "Show available commands" },
+  { cmd: "ls", desc: "List all available commands" },
   { cmd: "skills", desc: "List technical skills" },
   { cmd: "projects", desc: "View project portfolio" },
-  { cmd: "ai", desc: "AI & Automation focus" },
   { cmd: "resume", desc: "Download PDF resume" },
   { cmd: "contact", desc: "Send a message" },
   { cmd: "home", desc: "Return to start" }

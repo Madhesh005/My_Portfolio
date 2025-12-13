@@ -1,9 +1,10 @@
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { CommandInput } from "../terminal/CommandInput";
 import { useLocation } from "wouter";
-import { Download, Github, Linkedin, Home as HomeIcon } from "lucide-react";
+import { Download, Linkedin, Home as HomeIcon } from "lucide-react";
 import { SOCIALS } from "@/lib/constants";
+import { Typewriter } from "../terminal/Typewriter";
 
 interface TerminalLayoutProps {
   children: ReactNode;
@@ -11,6 +12,23 @@ interface TerminalLayoutProps {
 
 export function TerminalLayout({ children }: TerminalLayoutProps) {
   const [location, setLocation] = useLocation();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showContent, setShowContent] = useState(true);
+
+  // Transition Logic
+  useEffect(() => {
+    // When location changes, trigger transition
+    setIsTransitioning(true);
+    setShowContent(false);
+
+    // Simulate "loading" phase
+    const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setShowContent(true);
+    }, 1500); // 1.5s transition time
+
+    return () => clearTimeout(timer);
+  }, [location]);
 
   const getPathBreadcrumb = () => {
     if (location === "/") return "~";
@@ -71,7 +89,36 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
 
         {/* Content Area */}
         <div className="flex-1 bg-black/50 border-x border-b border-zinc-800 rounded-b-lg p-4 md:p-8 overflow-y-auto scrollbar-hide min-h-[60vh] relative shadow-2xl shadow-black">
-            {children}
+            
+            {/* Transition Overlay */}
+            {isTransitioning && (
+                <div className="absolute inset-0 bg-black/90 z-50 p-8 font-mono text-sm space-y-2">
+                    <div className="text-emerald-500">
+                        <span className="mr-2">$</span>
+                        <Typewriter text={`cd ${location === "/" ? "~" : location.substring(1)}`} delay={50} />
+                    </div>
+                    <div className="text-emerald-500 opacity-80">
+                         <span className="mr-2">&gt;</span>
+                         <Typewriter text="Loading modules..." delay={30} />
+                    </div>
+                    <div className="text-emerald-500 opacity-60">
+                         <span className="mr-2">&gt;</span>
+                         <Typewriter text="Fetching data from /dev/null..." delay={20} />
+                    </div>
+                    <div className="text-emerald-500 opacity-40">
+                         <span className="mr-2">&gt;</span>
+                         <Typewriter text="Rendering UI components..." delay={10} />
+                    </div>
+                    <div className="mt-4">
+                        <span className="cursor-block"></span>
+                    </div>
+                </div>
+            )}
+
+            {/* Actual Content (Fades in) */}
+            <div className={`transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+                {children}
+            </div>
             
             {/* Input Area Sticky Bottom */}
             <div className="mt-12 mb-4">
