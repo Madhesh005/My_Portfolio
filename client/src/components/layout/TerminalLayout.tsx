@@ -2,7 +2,7 @@
 import { ReactNode, useEffect, useState, useRef } from "react";
 import { CommandInput } from "../terminal/CommandInput";
 import { useLocation } from "wouter";
-import { Download, Linkedin, Home as HomeIcon } from "lucide-react";
+import { Download, Github, Home as HomeIcon } from "lucide-react";
 import { SOCIALS } from "@/lib/constants";
 import { Typewriter } from "../terminal/Typewriter";
 
@@ -22,16 +22,16 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
     setIsTransitioning(true);
     setShowContent(false);
     
-    // Scroll to top of content
+    // Scroll to top of content - CRITICAL FIX
     if (contentRef.current) {
-        contentRef.current.scrollTop = 0;
+        contentRef.current.scrollTo(0, 0);
     }
 
     // Simulate "loading" phase
     const timer = setTimeout(() => {
         setIsTransitioning(false);
         setShowContent(true);
-    }, 1500); // 1.5s transition time
+    }, 1500); 
 
     return () => clearTimeout(timer);
   }, [location]);
@@ -61,13 +61,13 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
                 </button>
             )}
             <a 
-                href={SOCIALS.linkedin} 
+                href={SOCIALS.github} 
                 target="_blank" 
                 rel="noreferrer"
                 className="flex items-center gap-2 px-3 py-1.5 rounded border border-zinc-800 hover:border-zinc-600 hover:bg-zinc-900 transition-all text-xs"
             >
-                <Linkedin size={14} />
-                <span className="hidden sm:inline">LinkedIn</span>
+                <Github size={14} />
+                <span className="hidden sm:inline">Github</span>
             </a>
             <a 
                 href="/resume.pdf" 

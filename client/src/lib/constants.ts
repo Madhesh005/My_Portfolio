@@ -1,6 +1,11 @@
 
 import { LucideIcon, Code2, Database, Terminal, Cpu, Globe, Layout, Server, Brain, Shield } from "lucide-react";
 
+export interface Collaborator {
+  name: string;
+  linkedin: string;
+}
+
 export interface Project {
   id: string;
   name: string;
@@ -10,6 +15,9 @@ export interface Project {
   solution: string;
   highlights: string;
   status: string;
+  category: "hobby" | "internship" | "featured" | "upcoming";
+  company?: string; // For internship projects
+  collaborators?: Collaborator[];
   links: {
     demo: string;
     repo: string;
@@ -17,35 +25,61 @@ export interface Project {
   };
 }
 
+export interface Internship {
+  id: string;
+  company: string;
+  role: string;
+  duration: string;
+  type: "Remote" | "On-site" | "Hybrid";
+  description: string[];
+  projects: string[]; // Project IDs
+}
+
+export const INTERNSHIPS: Internship[] = [
+  {
+    id: "prodigy",
+    company: "Prodigy Infotech",
+    role: "Web Development Intern",
+    duration: "June 2024 – July 2024",
+    type: "Remote",
+    description: [
+      "Successfully completed internship as a Web Developer, enhancing front-end and back-end skills.",
+      "Developed a personal portfolio website showcasing projects and skills.",
+      "Built several JavaScript-based applications improving understanding of DOM manipulation.",
+      "Designed and developed a responsive landing page."
+    ],
+    projects: ["nostra", "temp-conv", "tictactoe", "stopwatch"]
+  },
+  {
+    id: "wealth-empires-intern",
+    company: "Wealth Empires",
+    role: "Web Developer Intern",
+    duration: "September 2025 – October 2025",
+    type: "Remote",
+    description: [
+      "Developed a responsive business website for Wealth Empires.",
+      "Integrated digital startup tools and compliance automation.",
+      "Collaborated with startup stakeholders to ensure a seamless user experience."
+    ],
+    projects: ["wealth-empires"]
+  },
+  {
+    id: "iot-intern",
+    company: "IoT Internship",
+    role: "Team-based IoT Development",
+    duration: "June 2025 – July 2025",
+    type: "On-site",
+    description: [
+      "Worked in an offline 19-member team, developing core IoT understanding.",
+      "Implemented real-time embedded systems.",
+      "Mentored school students, improving communication and leadership skills."
+    ],
+    projects: [] // No specific web projects listed for this one yet
+  }
+];
+
 export const PROJECTS: Project[] = [
-  {
-    id: "wealth-empires",
-    name: "Wealth Empires",
-    shortDescription: "Startup Website",
-    techStack: ["HTML", "CSS", "Github"],
-    problem: "Need for a high-performance, accessible landing page for a fintech startup.",
-    solution: "Responsive, semantic HTML5/CSS3 implementation with optimized assets.",
-    highlights: "99/100 Lighthouse score, sub-second load time, fully accessible navigation.",
-    status: "Live - v1.0.0 deployed",
-    links: {
-      demo: "https://example.com/wealth-empires",
-      repo: "https://github.com/madheshr005/wealth-empires"
-    }
-  },
-  {
-    id: "theplug",
-    name: "ThePlug",
-    shortDescription: "Ecommerce Platform",
-    techStack: ["React", "Express", "Postgres"],
-    problem: "Scalable ecommerce solution needed with real-time inventory management.",
-    solution: "Full-stack PERN application with socket.io for real-time updates.",
-    highlights: "Handle 10k+ concurrent users, secure Stripe integration, admin dashboard.",
-    status: "In Development - Beta Testing",
-    links: {
-      demo: "https://theplug.store",
-      repo: "https://github.com/madheshr005/theplug"
-    }
-  },
+  // --- FEATURED PROJECTS ---
   {
     id: "pathlens",
     name: "PathLens AI",
@@ -54,26 +88,151 @@ export const PROJECTS: Project[] = [
     problem: "Students lack personalized career guidance based on their strengths.",
     solution: "AI-powered SWOT analysis tool that maps traits to career paths.",
     highlights: "Integrated OpenAI API, custom prompt engineering, PDF report generation.",
-    status: "Private Beta - 6 teams onboarded",
-    links: {
-      demo: "https://pathlens.ai",
-      repo: "https://github.com/madheshr005/pathlens",
-      docs: "https://docs.pathlens.ai"
-    }
+    status: "Private Beta",
+    category: "featured",
+    collaborators: [{ name: "Lokesh TA", linkedin: "#" }],
+    links: { demo: "https://pathlens.ai", repo: "#", docs: "#" }
   },
+  {
+    id: "velammal-training",
+    name: "Velammal Training",
+    shortDescription: "Institute Website",
+    techStack: ["React", "Tailwind", "Framer Motion"],
+    problem: "Outdated digital presence for a training institute.",
+    solution: "Modern, responsive website with course catalogs and registration.",
+    highlights: "Increased enrollment inquiries by 40%.",
+    status: "Live",
+    category: "featured",
+    collaborators: [{ name: "Yuvaraj M", linkedin: "#" }],
+    links: { demo: "#", repo: "#" }
+  },
+  {
+    id: "velammal-ecommerce",
+    name: "Velammal Store",
+    shortDescription: "Ecommerce Platform",
+    techStack: ["Next.js", "Stripe", "Sanity"],
+    problem: "Need for an online store to sell institute materials.",
+    solution: "Full-stack ecommerce with secure payments and inventory sync.",
+    highlights: "Seamless checkout flow, admin dashboard.",
+    status: "In Development",
+    category: "featured",
+    collaborators: [{ name: "Yuvaraj M", linkedin: "#" }],
+    links: { demo: "#", repo: "#" }
+  },
+
+  // --- HOBBY PROJECTS ---
   {
     id: "jarvis",
     name: "Jarvis AI",
     shortDescription: "Personal Assistant",
     techStack: ["Python", "GIT", "Streamlit"],
-    problem: "Need for a local, privacy-focused personal assistant for task automation.",
+    problem: "Need for a local, privacy-focused personal assistant.",
     solution: "Python-based voice assistant with local LLM integration.",
     highlights: "Voice recognition, system control, offline capabilities.",
-    status: "Stable - v2.1 Released",
-    links: {
-      demo: "#",
-      repo: "https://github.com/madheshr005/jarvis"
-    }
+    status: "Stable",
+    category: "hobby",
+    collaborators: [{ name: "Sajeetha P", linkedin: "#" }],
+    links: { demo: "#", repo: "https://github.com/madheshr005/jarvis" }
+  },
+  {
+    id: "dynamic-todo",
+    name: "Dynamic ToDo",
+    shortDescription: "Smart Task Manager",
+    techStack: ["React", "LocalStorage", "DnD"],
+    problem: "Standard todo apps lack flexibility in prioritization.",
+    solution: "Drag-and-drop interface with dynamic priority sorting.",
+    highlights: "Intuitive UX, persistent local storage, dark mode.",
+    status: "Completed",
+    category: "hobby",
+    links: { demo: "#", repo: "#" }
+  },
+  {
+    id: "ascendra",
+    name: "Ascendra",
+    shortDescription: "Project Management",
+    techStack: ["MERN", "Socket.io", "Redux"],
+    problem: "Team collaboration tools are often too complex or expensive.",
+    solution: "Streamlined project management tool for small agile teams.",
+    highlights: "Real-time updates, kanban board, team chat.",
+    status: "Alpha",
+    category: "hobby",
+    collaborators: [
+      { name: "Gokul Jayachandran", linkedin: "#" },
+      { name: "Yogesh Odayar P S", linkedin: "#" },
+      { name: "Nithiashree M", linkedin: "#" },
+      { name: "Lokesh T A", linkedin: "#" }
+    ],
+    links: { demo: "#", repo: "#" }
+  },
+
+  // --- INTERNSHIP PROJECTS (Prodigy) ---
+  {
+    id: "nostra",
+    name: "Nostra",
+    shortDescription: "Ecommerce Frontend",
+    techStack: ["HTML", "CSS", "JS"],
+    problem: "Demonstrating frontend skills for ecommerce UI.",
+    solution: "Responsive product listing and cart interface.",
+    highlights: "Clean UI, mobile responsive, smooth interactions.",
+    status: "Completed",
+    category: "internship",
+    company: "Prodigy Infotech",
+    links: { demo: "#", repo: "#" }
+  },
+  {
+    id: "temp-conv",
+    name: "Temp Converter",
+    shortDescription: "Utility App",
+    techStack: ["JS", "DOM"],
+    problem: "Simple tool needed for quick unit conversions.",
+    solution: "Instant conversion between Celsius, Fahrenheit, Kelvin.",
+    highlights: "Real-time calculation, input validation.",
+    status: "Completed",
+    category: "internship",
+    company: "Prodigy Infotech",
+    links: { demo: "#", repo: "#" }
+  },
+  {
+    id: "tictactoe",
+    name: "TicTacToe",
+    shortDescription: "Browser Game",
+    techStack: ["JS", "Game Logic"],
+    problem: "Understanding game state management in vanilla JS.",
+    solution: "Classic game with win detection and reset functionality.",
+    highlights: "Minimax algorithm for AI opponent (optional).",
+    status: "Completed",
+    category: "internship",
+    company: "Prodigy Infotech",
+    links: { demo: "#", repo: "#" }
+  },
+  {
+    id: "stopwatch",
+    name: "Stopwatch",
+    shortDescription: "Time Tracking",
+    techStack: ["JS", "Intervals"],
+    problem: "Precise time tracking requirement.",
+    solution: "Accurate stopwatch with lap functionality.",
+    highlights: "Millisecond precision, lap history.",
+    status: "Completed",
+    category: "internship",
+    company: "Prodigy Infotech",
+    links: { demo: "#", repo: "#" }
+  },
+
+  // --- INTERNSHIP PROJECTS (Wealth Empires) ---
+  {
+    id: "wealth-empires",
+    name: "Wealth Empires",
+    shortDescription: "Company Website",
+    techStack: ["HTML", "CSS", "JS"],
+    problem: "Need for a high-performance landing page.",
+    solution: "Responsive, semantic HTML5/CSS3 implementation.",
+    highlights: "99/100 Lighthouse score, sub-second load time.",
+    status: "Live",
+    category: "internship",
+    company: "Wealth Empires",
+    collaborators: [{ name: "Lokesh TA", linkedin: "#" }],
+    links: { demo: "#", repo: "#" }
   }
 ];
 
@@ -113,8 +272,9 @@ export const SOCIALS = {
 
 export const COMMANDS = [
   { cmd: "ls", desc: "List all available commands" },
-  { cmd: "skills", desc: "List technical skills" },
   { cmd: "projects", desc: "View project portfolio" },
+  { cmd: "internships", desc: "View work experience" },
+  { cmd: "skills", desc: "List technical skills" },
   { cmd: "resume", desc: "Download PDF resume" },
   { cmd: "contact", desc: "Send a message" },
   { cmd: "home", desc: "Return to start" }

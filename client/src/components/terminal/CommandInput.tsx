@@ -26,7 +26,6 @@ export function CommandInput({ onCommand }: CommandInputProps) {
         inputRef.current?.focus();
         
         if (submit) {
-            // Small delay to simulate typing completion before submitting
             setTimeout(() => {
                 processCommand(text);
                 setHistory((prev) => [...prev, text]);
@@ -38,13 +37,12 @@ export function CommandInput({ onCommand }: CommandInputProps) {
 
     window.addEventListener('terminal:type', handleType as EventListener);
     return () => window.removeEventListener('terminal:type', handleType as EventListener);
-  }, [location]); // Re-bind if location changes, though strictly not needed if logic is pure
+  }, [location]); 
 
   // Smart Auto-focus
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
-        // Don't steal focus if clicking on interactive elements or their containers
         if (
             target.tagName === 'INPUT' || 
             target.tagName === 'TEXTAREA' || 
@@ -102,20 +100,16 @@ export function CommandInput({ onCommand }: CommandInputProps) {
     const command = parts[0];
     const arg = parts.slice(1).join(" ");
 
-    // Project Shortcuts
-    const projectMap: Record<string, string> = {
-        "wealthempires": "wealth-empires",
-        "wealth": "wealth-empires",
-        "theplug": "theplug",
-        "plug": "theplug",
-        "pathlens": "pathlens",
-        "path": "pathlens",
-        "jarvis": "jarvis",
-        "jarvisai": "jarvis"
-    };
+    // Check for project shortcuts first
+    // We normalize by removing hyphens to match what we did in Projects.tsx and ListCommands.tsx
+    // The user wants 'wealthempires' to work for 'wealth-empires'
+    const normalizedCmd = command.replace(/-/g, "");
 
-    if (projectMap[command]) {
-        setLocation(`/project/${projectMap[command]}`);
+    // Find if this command matches any project ID (also normalized)
+    const project = PROJECTS.find(p => p.id.replace(/-/g, "") === normalizedCmd);
+    
+    if (project) {
+        setLocation(`/project/${project.id}`);
         return;
     }
 
@@ -132,6 +126,10 @@ export function CommandInput({ onCommand }: CommandInputProps) {
       case "projects":
       case "work":
         setLocation("/projects");
+        break;
+      case "internships":
+      case "experience":
+        setLocation("/internships");
         break;
       case "skills":
       case "stack":
@@ -191,6 +189,7 @@ export function CommandInput({ onCommand }: CommandInputProps) {
     if (location === "/skills") return `${pathStr}\\Skills>`;
     if (location === "/contact") return `${pathStr}\\Contact>`;
     if (location === "/ls") return `${pathStr}\\Ls>`;
+    if (location === "/internships") return `${pathStr}\\Internships>`;
     
     if (cleanPath[0] === "project" && cleanPath[1]) {
         // Find project name for prettier display

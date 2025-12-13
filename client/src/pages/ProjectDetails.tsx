@@ -2,7 +2,7 @@
 import { TerminalLayout } from "@/components/layout/TerminalLayout";
 import { PROJECTS } from "@/lib/constants";
 import { useRoute } from "wouter";
-import { ExternalLink, Github, Eye, Terminal as TerminalIcon, ArrowUpRight } from "lucide-react";
+import { ExternalLink, Github, Eye, Terminal as TerminalIcon, ArrowUpRight, Users } from "lucide-react";
 import previewImage from "@assets/generated_images/abstract_wireframe_tech_background.png";
 
 export default function ProjectDetails() {
@@ -20,7 +20,7 @@ export default function ProjectDetails() {
 
   return (
     <TerminalLayout>
-      <div className="space-y-8 animate-in fade-in duration-500">
+      <div className="space-y-8 animate-in fade-in duration-500 pb-20">
         
         <div className="text-zinc-500">
           <span className="text-emerald-500 font-bold mr-2">$</span>
@@ -41,11 +41,13 @@ export default function ProjectDetails() {
             </div>
             
             <div className="space-y-4">
-                <h1 className="text-xl font-bold text-white flex items-center gap-3">
-                    {project.name}
-                    <span className="text-sm font-normal text-zinc-500">-</span>
-                    <span className="text-sm font-normal text-zinc-400">{project.shortDescription}</span>
-                </h1>
+                <div>
+                    <h1 className="text-xl font-bold text-white flex items-center gap-3">
+                        {project.name}
+                        {project.company && <span className="text-xs font-normal px-2 py-0.5 rounded bg-zinc-800 text-zinc-400">@{project.company}</span>}
+                    </h1>
+                    <div className="text-sm font-normal text-zinc-400 mt-1">{project.shortDescription}</div>
+                </div>
                 
                 <p className="text-zinc-400 text-sm leading-relaxed border-l-2 border-zinc-800 pl-4">
                     {project.solution}
@@ -60,6 +62,29 @@ export default function ProjectDetails() {
                 </div>
             </div>
         </div>
+
+        {/* Collaborators Section */}
+        {project.collaborators && project.collaborators.length > 0 && (
+            <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/10 flex items-center gap-4">
+                <div className="text-zinc-500 shrink-0 flex items-center gap-2">
+                    <Users size={14} className="text-blue-400" />
+                    <span className="font-bold text-xs uppercase tracking-widest">Team</span>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                    {project.collaborators.map((collab, i) => (
+                        <a 
+                            key={i} 
+                            href={collab.linkedin} 
+                            target="_blank" 
+                            rel="noreferrer"
+                            className="text-sm text-zinc-300 hover:text-white hover:underline decoration-zinc-600 underline-offset-4"
+                        >
+                            {collab.name}
+                        </a>
+                    ))}
+                </div>
+            </div>
+        )}
 
         {/* Details Section */}
         <div className="space-y-6">
