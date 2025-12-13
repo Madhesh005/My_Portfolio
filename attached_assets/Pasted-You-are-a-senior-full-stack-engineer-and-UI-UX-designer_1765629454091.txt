@@ -1,0 +1,199 @@
+You are a senior full-stack engineer and UI/UX designer.
+
+TASK:
+Build a fully functional, production-ready PERSONAL PORTFOLIO WEBSITE that EXACTLY matches the uploaded Figma images.
+
+The entire website must look and behave like an INTERACTIVE COMMAND PROMPT / TERMINAL (ChatGPT-like experience).
+
+DO NOT create a normal website layout.
+DO NOT use traditional navigation menus.
+The UI/UX and interaction style are the MOST IMPORTANT part.
+
+-----------------------------------
+TECH STACK (MANDATORY)
+-----------------------------------
+Frontend:
+- React
+- TypeScript
+- Tailwind CSS
+- React Router
+
+Backend:
+- Express (only if needed)
+- Firebase (Firestore for contact form)
+
+-----------------------------------
+GLOBAL UI / UX RULES
+-----------------------------------
+- Dark terminal theme (pure black / near black background)
+- Monospace font ONLY (JetBrains Mono / Fira Code)
+- Subtle glow, borders, terminal window shadows
+- Command prompt syntax like:
+  $ skills
+  $ projects
+  $ help
+- Smooth typing animation for outputs
+- ChatGPT-style input box at the bottom of EVERY PAGE
+- Sample placeholder prompts shown above the input
+- Keyboard-first UX (Enter to submit command)
+- Mobile responsive (terminal stacks vertically, no overflow)
+- No clutter, minimal, premium developer aesthetic
+
+-----------------------------------
+CORE CONCEPT
+-----------------------------------
+This website behaves like a TERMINAL INTERFACE.
+
+User interacts ONLY through:
+- Command input box (search / command bar)
+- Clicking command-like buttons
+
+Typing commands navigates pages or triggers actions.
+
+-----------------------------------
+PAGES TO IMPLEMENT (MATCH IMAGES EXACTLY)
+-----------------------------------
+
+1️⃣ HOME PAGE (Terminal Intro)
+- ASCII or minimal graphic on left
+- Info displayed in terminal blocks:
+  Name
+  Role
+  Location
+  Summary
+  Focus
+  Open To
+- "featured-skills" section as command-style tags
+- "highlights" section with clickable projects
+- Resume download button (top-right)
+- LinkedIn button (top-right)
+
+Commands:
+$ help
+$ skills
+$ projects
+$ ai
+$ resume
+$ contact
+
+-----------------------------------
+
+2️⃣ PROJECTS PAGE (Overall Projects)
+- Command: $ projects
+- Lists projects in terminal cards
+- Each project shows:
+  - Name
+  - Short description
+  - Tech stack tags
+- Commands:
+  $ preview <project>
+  $ open <project>
+  $ repo <project>
+
+-----------------------------------
+
+3️⃣ EACH PROJECT PAGE (Detailed View)
+- Command: $ preview <project_name>
+- Shows:
+  - Preview image placeholder
+  - Problem
+  - Solution
+  - Highlights
+  - Status
+- Terminal-style buttons:
+  Open Live Demo
+  Read Docs
+  View Repo
+  Request Access
+
+-----------------------------------
+
+4️⃣ SKILLS PAGE
+- Command: $ skills
+- Skills grouped as:
+  Frontend
+  Backend
+  Data & Infra
+  AI & Automation
+- Skill level badges (expert / advanced / strong)
+- All content rendered in terminal sections
+
+-----------------------------------
+
+5️⃣ CONTACT PAGE
+- Command: $ contact
+- Shows:
+  Direct contact info
+  Social links
+- Command: $ compose
+- Terminal-style form:
+  from
+  subject
+  message
+- On submit:
+  Store message in Firebase Firestore
+  Show terminal confirmation output
+
+-----------------------------------
+SEARCH / COMMAND SYSTEM (VERY IMPORTANT)
+-----------------------------------
+Implement a GLOBAL command parser.
+
+Examples:
+- "skills" → navigate to skills page
+- "projects" → projects page
+- "help" → show available commands BELOW input
+- "resume" → download resume file
+- "contact" → contact page
+- "preview pathlens" → open project
+- Invalid command → terminal error response
+
+-----------------------------------
+RESUME DOWNLOAD
+-----------------------------------
+- Resume button always visible (top-right)
+- Downloads PDF resume (static file)
+- Command: $ resume also triggers download
+
+-----------------------------------
+FIREBASE INTEGRATION
+-----------------------------------
+- Use Firebase Firestore
+- Store:
+  name/email
+  subject
+  message
+  timestamp
+- Secure rules
+- No UI exposure of Firebase keys
+
+-----------------------------------
+ANIMATIONS
+-----------------------------------
+- Terminal typing effect for responses
+- Subtle cursor blink
+- Smooth transitions between pages
+- No heavy animations
+
+-----------------------------------
+CODE QUALITY
+-----------------------------------
+- Clean folder structure
+- Reusable terminal components
+- Strong typing with TypeScript
+- Responsive Tailwind utilities
+- Production-ready code only
+
+-----------------------------------
+FINAL REQUIREMENT
+-----------------------------------
+The final output MUST look and feel EXACTLY like the uploaded Figma images:
+- Same spacing
+- Same layout
+- Same terminal behavior
+- Same interaction philosophy
+
+If any design decision is unclear:
+➡️ FOLLOW THE IMAGES STRICTLY.
+
+Start by scaffolding the project and building the terminal engine first.
