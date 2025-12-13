@@ -79,9 +79,9 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
         {/* Window Header */}
         <div className="w-full bg-zinc-900/80 border border-zinc-800 rounded-t-lg p-2 flex items-center justify-between text-xs text-zinc-500 select-none backdrop-blur-md">
             <div className="flex gap-2 ml-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                <button onClick={() => setLocation("/")} className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50 hover:bg-red-500/50 transition-colors"></button>
+                <button onClick={() => setLocation("/ls")} className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50 hover:bg-yellow-500/50 transition-colors"></button>
+                <button className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50 cursor-default"></button>
             </div>
             <div className="opacity-50">bash — 80x24</div>
             <div className="mr-2 opacity-50 hidden sm:block">type: help | skills | projects</div>

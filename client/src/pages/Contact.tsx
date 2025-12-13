@@ -27,6 +27,9 @@ export default function Contact() {
   }, [step]);
 
   const handleKeyDown = async (e: React.KeyboardEvent) => {
+    // Stop propagation so global command input doesn't see this enter key
+    e.stopPropagation(); 
+    
     if (e.key === "Enter") {
         if (!inputValue.trim()) return;
         
@@ -87,7 +90,13 @@ export default function Contact() {
         </div>
 
         {/* Interactive CLI Form */}
-        <div className="border border-zinc-800 rounded-lg p-6 bg-black/50 font-mono text-sm shadow-inner min-h-[300px] flex flex-col" onClick={() => inputRef.current?.focus()}>
+        <div 
+            className="border border-zinc-800 rounded-lg p-6 bg-black/50 font-mono text-sm shadow-inner min-h-[300px] flex flex-col cursor-text" 
+            onClick={(e) => {
+                e.stopPropagation(); // Stop propagation to prevent global input focus
+                inputRef.current?.focus();
+            }}
+        >
             <div className="text-zinc-500 mb-6 text-xs border-b border-zinc-800 pb-2">
                 <span className="text-emerald-500 font-bold mr-2">$</span>
                 <span>secure-channel --init</span>

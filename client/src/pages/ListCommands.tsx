@@ -6,6 +6,18 @@ import { useLocation } from "wouter";
 export default function ListCommands() {
   const [_, setLocation] = useLocation();
 
+  const handleCommandClick = (cmd: string) => {
+    // "automatically type in the below search bar and it has to not redirect"
+    // So we just type it, we don't submit it.
+    const event = new CustomEvent('terminal:type', { 
+        detail: { 
+            text: cmd, 
+            submit: false 
+        } 
+    });
+    window.dispatchEvent(event);
+  };
+
   return (
     <TerminalLayout>
       <div className="space-y-6">
@@ -18,13 +30,7 @@ export default function ListCommands() {
           {COMMANDS.map((command) => (
             <div 
               key={command.cmd}
-              onClick={() => {
-                 if (command.cmd === "resume") {
-                     window.open("/resume.pdf", "_blank");
-                 } else {
-                     setLocation(command.cmd === "ls" ? "/ls" : command.cmd === "home" ? "/" : `/${command.cmd}`);
-                 }
-              }}
+              onClick={() => handleCommandClick(command.cmd)}
               className="group border border-zinc-800 bg-zinc-900/10 p-4 rounded hover:bg-zinc-900 hover:border-emerald-500/50 cursor-pointer transition-all"
             >
               <div className="flex items-center gap-3 mb-2">
@@ -36,28 +42,6 @@ export default function ListCommands() {
               </div>
             </div>
           ))}
-        </div>
-        
-        <div className="mt-8 border-t border-zinc-800 pt-6">
-            <h3 className="text-zinc-400 mb-4 text-sm font-bold">File System</h3>
-            <div className="font-mono text-sm space-y-2">
-                <div className="grid grid-cols-[100px_1fr] text-zinc-500">
-                    <span>drwxr-xr-x</span>
-                    <span className="text-blue-400">projects/</span>
-                </div>
-                <div className="grid grid-cols-[100px_1fr] text-zinc-500">
-                    <span>drwxr-xr-x</span>
-                    <span className="text-blue-400">skills/</span>
-                </div>
-                <div className="grid grid-cols-[100px_1fr] text-zinc-500">
-                    <span>-rw-r--r--</span>
-                    <span className="text-zinc-300">resume.pdf</span>
-                </div>
-                <div className="grid grid-cols-[100px_1fr] text-zinc-500">
-                    <span>-rw-r--r--</span>
-                    <span className="text-zinc-300">contact.sh</span>
-                </div>
-            </div>
         </div>
 
       </div>

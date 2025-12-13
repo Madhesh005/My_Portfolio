@@ -16,9 +16,48 @@ export function CommandInput({ onCommand }: CommandInputProps) {
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
 
-  // Auto-focus on mount and keep focus
+  // Handle external "type" events
   useEffect(() => {
-    const handleClick = () => inputRef.current?.focus();
+    const handleType = (e: CustomEvent) => {
+        const text = e.detail.text;
+        const submit = e.detail.submit;
+        
+        setInput(text);
+        inputRef.current?.focus();
+        
+        if (submit) {
+            // Small delay to simulate typing completion before submitting
+            setTimeout(() => {
+                processCommand(text);
+                setHistory((prev) => [...prev, text]);
+                setHistoryIndex(-1);
+                setInput("");
+            }, 300);
+        }
+    };
+
+    window.addEventListener('terminal:type', handleType as EventListener);
+    return () => window.removeEventListener('terminal:type', handleType as EventListener);
+  }, [location]); // Re-bind if location changes, though strictly not needed if logic is pure
+
+  // Smart Auto-focus
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        // Don't steal focus if clicking on interactive elements or their containers
+        if (
+            target.tagName === 'INPUT' || 
+            target.tagName === 'TEXTAREA' || 
+            target.tagName === 'A' || 
+            target.tagName === 'BUTTON' ||
+            target.closest('a') || 
+            target.closest('button') || 
+            target.closest('input') ||
+            target.closest('textarea')
+        ) return;
+        
+        inputRef.current?.focus();
+    };
     document.addEventListener("click", handleClick);
     return () => document.removeEventListener("click", handleClick);
   }, []);
@@ -62,6 +101,23 @@ export function CommandInput({ onCommand }: CommandInputProps) {
     const parts = cmd.toLowerCase().split(" ");
     const command = parts[0];
     const arg = parts.slice(1).join(" ");
+
+    // Project Shortcuts
+    const projectMap: Record<string, string> = {
+        "wealthempires": "wealth-empires",
+        "wealth": "wealth-empires",
+        "theplug": "theplug",
+        "plug": "theplug",
+        "pathlens": "pathlens",
+        "path": "pathlens",
+        "jarvis": "jarvis",
+        "jarvisai": "jarvis"
+    };
+
+    if (projectMap[command]) {
+        setLocation(`/project/${projectMap[command]}`);
+        return;
+    }
 
     switch (command) {
       case "help":
@@ -121,24 +177,40 @@ export function CommandInput({ onCommand }: CommandInputProps) {
         toast({ title: `Command not found: ${command}`, variant: "destructive", className: "font-mono", duration: 5000 });
     }
   };
+
+  const getPromptPath = () => {
+    if (location === "/") return "Portfolio:\\Home>";
+    
+    // Convert /projects -> \Home\Projects>
+    // Convert /project/pathlens -> \Home\Projects\PathLens>
+    
+    const cleanPath = location.substring(1).split("/");
+    let pathStr = "Portfolio:\\Home";
+    
+    if (location === "/projects") return `${pathStr}\\Projects>`;
+    if (location === "/skills") return `${pathStr}\\Skills>`;
+    if (location === "/contact") return `${pathStr}\\Contact>`;
+    if (location === "/ls") return `${pathStr}\\Ls>`;
+    
+    if (cleanPath[0] === "project" && cleanPath[1]) {
+        // Find project name for prettier display
+        const p = PROJECTS.find(p => p.id === cleanPath[1]);
+        const pName = p ? p.name.replace(/\s+/g, "") : cleanPath[1];
+        return `${pathStr}\\Projects\\${pName}>`;
+    }
+
+    return `${pathStr}\\${cleanPath[0].charAt(0).toUpperCase() + cleanPath[0].slice(1)}>`;
+  };
   
   return (
     <div className="w-full flex flex-col gap-2">
-      <div className="flex items-center gap-2 text-zinc-500 text-sm font-mono px-4 opacity-50">
-        <span>$ try:</span>
-        {COMMANDS.slice(0, 5).map(c => (
-            <span key={c.cmd} className="hover:text-white cursor-pointer transition-colors" onClick={() => setInput(c.cmd)}>
-                {c.cmd}
-            </span>
-        ))}
-      </div>
-      
       <div className="relative flex items-center w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-3 shadow-lg backdrop-blur-sm focus-within:ring-1 focus-within:ring-zinc-700 transition-all cursor-text overflow-hidden" onClick={() => inputRef.current?.focus()}>
-        <span className="text-emerald-500 font-bold mr-3 font-mono shrink-0">$</span>
+        <span className="text-emerald-500 font-bold mr-3 font-mono shrink-0 whitespace-nowrap hidden sm:inline">{getPromptPath()}</span>
+        <span className="text-emerald-500 font-bold mr-3 font-mono shrink-0 whitespace-nowrap sm:hidden">$</span>
         
         {/* Custom Input Display with Block Cursor */}
-        <div className="flex-1 font-mono text-zinc-100 whitespace-pre overflow-hidden">
-             {input}
+        <div className="flex-1 font-mono text-zinc-100 whitespace-pre overflow-hidden flex items-center">
+             <span>{input}</span>
              <span className="cursor-block align-middle ml-1"></span>
         </div>
 
@@ -153,19 +225,6 @@ export function CommandInput({ onCommand }: CommandInputProps) {
           autoComplete="off"
           autoFocus
         />
-      </div>
-      
-      {/* Quick Nav Buttons (Bottom Bar) */}
-      <div className="flex justify-center gap-4 mt-2 font-mono text-xs text-zinc-500">
-        {["projects", "skills", "ls", "resume", "contact"].map(cmd => (
-            <button 
-                key={cmd}
-                onClick={() => processCommand(cmd)}
-                className="hover:text-emerald-400 transition-colors uppercase tracking-widest"
-            >
-                {cmd}
-            </button>
-        ))}
       </div>
     </div>
   );
