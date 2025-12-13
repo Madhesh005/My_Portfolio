@@ -71,7 +71,7 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
             </a>
             <a 
                 href="/resume.pdf" 
-                target="_blank"
+                download="Madhesh_R_Resume.pdf"
                 className="flex items-center gap-2 px-3 py-1.5 rounded border border-zinc-800 hover:border-zinc-600 hover:bg-zinc-900 transition-all text-xs text-emerald-400"
             >
                 <Download size={14} />
@@ -96,7 +96,7 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
         {/* Content Area */}
         <div 
             ref={contentRef}
-            className="flex-1 bg-black/50 border-x border-b border-zinc-800 rounded-b-lg p-4 md:p-8 overflow-y-auto scrollbar-hide min-h-[60vh] relative shadow-2xl shadow-black"
+            className="flex-1 bg-black/50 border-x border-b border-zinc-800 rounded-b-lg p-4 md:p-8 overflow-y-auto scrollbar-hide min-h-[60vh] relative shadow-2xl shadow-black pb-24"
         >
             
             {/* Transition Overlay */}
@@ -128,11 +128,13 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
             <div className={`transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
                 {children}
             </div>
-            
-            {/* Input Area Sticky Bottom */}
-            <div className="mt-12 mb-4">
-                <CommandInput />
-            </div>
+        </div>
+
+        {/* Fixed Command Input - Floating at Bottom */}
+        <div className="fixed bottom-3 left-0 right-0 z-50 px-8 md:px-16 lg:px-24 animate-in slide-in-from-bottom-2 duration-300">
+          <div className="max-w-3xl mx-auto">
+            <CommandInput />
+          </div>
         </div>
       </div>
       

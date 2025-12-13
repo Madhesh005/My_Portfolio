@@ -43,7 +43,7 @@ export default function ListCommands() {
         </div>
         
         {/* Project Commands Section */}
-        <div className="mt-8 border-t border-zinc-800 pt-6 pb-20">
+        <div className="mt-8 border-t border-zinc-800 pt-6 pb-12">
              <h3 className="text-zinc-400 mb-4 text-sm font-bold">Project Shortcuts</h3>
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {PROJECTS.map((project) => {

@@ -58,7 +58,7 @@ export default function Projects() {
 
   return (
     <TerminalLayout>
-      <div className="space-y-12 animate-in fade-in duration-500 pb-20">
+      <div className="space-y-12 animate-in fade-in duration-500 pb-12">
         
         <div className="text-zinc-500">
           <span className="text-emerald-500 font-bold mr-2">$</span>

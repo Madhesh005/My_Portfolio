@@ -144,8 +144,14 @@ export function CommandInput({ onCommand }: CommandInputProps) {
         break;
       case "resume":
       case "cv":
-        window.open("/resume.pdf", "_blank");
-        toast({ title: "Downloading resume...", className: "font-mono bg-zinc-900 text-white border-zinc-800", duration: 5000 });
+        // Create a temporary link element to trigger download
+        const link = document.createElement('a');
+        link.href = '/resume.pdf';
+        link.download = 'Madhesh_R_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        toast({ title: "Downloading resume...", className: "font-mono bg-zinc-900 text-white border-zinc-800", duration: 3000 });
         break;
       case "preview":
       case "open":
@@ -203,7 +209,7 @@ export function CommandInput({ onCommand }: CommandInputProps) {
   
   return (
     <div className="w-full flex flex-col gap-2">
-      <div className="relative flex items-center w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-3 shadow-lg backdrop-blur-sm focus-within:ring-1 focus-within:ring-zinc-700 transition-all cursor-text overflow-hidden" onClick={() => inputRef.current?.focus()}>
+      <div className="relative flex items-center w-full bg-zinc-900/80 border border-zinc-700 rounded-lg px-4 py-3 mb-3 shadow-2xl backdrop-blur-md focus-within:ring-1 focus-within:ring-emerald-500/50 focus-within:border-emerald-500/50 transition-all cursor-text overflow-hidden" onClick={() => inputRef.current?.focus()}>
         <span className="text-emerald-500 font-bold mr-3 font-mono shrink-0 whitespace-nowrap hidden sm:inline">{getPromptPath()}</span>
         <span className="text-emerald-500 font-bold mr-3 font-mono shrink-0 whitespace-nowrap sm:hidden">$</span>
         

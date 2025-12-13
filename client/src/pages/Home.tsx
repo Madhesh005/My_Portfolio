@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <TerminalLayout>
-      <div className="space-y-8 animate-in fade-in duration-500">
+      <div className="space-y-8 animate-in fade-in duration-500 pb-12">
         
         {/* Command Echo */}
         <div className="text-zinc-500 mb-6">
@@ -89,7 +89,7 @@ export default function Home() {
                     <span>featured-skills</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                    {["React.js", "Express", "Node.js", "Postgres", "Python", "Docker", "GitHub Actions", "MySQL", "Flutter", "Java"].map((skill) => (
+                    {["React.js", "Express", "Node.js", "Postgres", "Python", "Docker", "GitHub Actions", "MySQL", "Flutter", "Java", "MongoDB"].map((skill) => (
                         <span key={skill} className="px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full text-xs text-zinc-300 hover:border-emerald-500/50 hover:text-emerald-400 transition-colors cursor-default">
                             {skill}
                         </span>
@@ -135,7 +135,7 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row sm:gap-6 truncate">
                     <span className="hover:text-white transition-colors cursor-pointer">madheshr005@gmail.com</span>
                     <span className="hidden sm:inline text-zinc-700">|</span>
-                    <span className="hover:text-white transition-colors cursor-pointer">github.com/madheshr005</span>
+                    <span className="hover:text-white transition-colors cursor-pointer">github.com/madhesh005</span>
                 </div>
             </div>
         </div>

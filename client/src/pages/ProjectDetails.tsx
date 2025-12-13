@@ -3,12 +3,21 @@ import { TerminalLayout } from "@/components/layout/TerminalLayout";
 import { PROJECTS } from "@/lib/constants";
 import { useRoute } from "wouter";
 import { ExternalLink, Github, Eye, Terminal as TerminalIcon, ArrowUpRight, Users } from "lucide-react";
-import previewImage from "@assets/generated_images/abstract_wireframe_tech_background.png";
+// Default preview image no longer needed
+import { useState } from "react";
+
+// Images no longer needed - all preview images removed
 
 export default function ProjectDetails() {
   const [match, params] = useRoute("/project/:id");
   const projectId = params?.id;
   const project = PROJECTS.find(p => p.id === projectId);
+  // Image state no longer needed - all preview images removed
+
+  // Remove preview images for ALL projects
+  const shouldShowImage = false;
+
+  // Image function no longer needed - all preview images removed
 
   if (!project) {
     return (
@@ -20,7 +29,7 @@ export default function ProjectDetails() {
 
   return (
     <TerminalLayout>
-      <div className="space-y-8 animate-in fade-in duration-500 pb-20">
+      <div className="space-y-8 animate-in fade-in duration-500 pb-12">
         
         <div className="text-zinc-500">
           <span className="text-emerald-500 font-bold mr-2">$</span>
@@ -28,34 +37,28 @@ export default function ProjectDetails() {
         </div>
 
         {/* Project Header Card */}
-        <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/20 grid md:grid-cols-[200px_1fr] gap-6">
-            <div className="w-full aspect-video md:aspect-square bg-zinc-900 rounded border border-zinc-800 overflow-hidden relative group">
-                 <img 
-                    src={previewImage} 
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700"
-                    alt="Project Preview"
-                 />
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-2">
-                    <span className="text-[10px] text-emerald-400 font-mono">v1.0.0-stable</span>
-                 </div>
-            </div>
+        <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/20">
             
             <div className="space-y-4">
                 <div>
-                    <h1 className="text-xl font-bold text-white flex items-center gap-3">
+                    <h1 className="text-2xl font-bold text-white flex items-center gap-3 flex-wrap">
                         {project.name}
-                        {project.company && <span className="text-xs font-normal px-2 py-0.5 rounded bg-zinc-800 text-zinc-400">@{project.company}</span>}
+                        {project.company && (
+                            <span className="text-xs font-normal px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">
+                                @{project.company}
+                            </span>
+                        )}
                     </h1>
-                    <div className="text-sm font-normal text-zinc-400 mt-1">{project.shortDescription}</div>
+                    <div className="text-base font-normal text-zinc-400 mt-2">{project.shortDescription}</div>
                 </div>
                 
-                <p className="text-zinc-400 text-sm leading-relaxed border-l-2 border-zinc-800 pl-4">
+                <p className="text-zinc-400 text-sm leading-relaxed border-l-2 border-emerald-500/30 pl-4 bg-zinc-900/30 py-3 rounded-r">
                     {project.solution}
                 </p>
 
                 <div className="flex flex-wrap gap-2 pt-2">
                     {project.techStack.map(tech => (
-                        <span key={tech} className="px-3 py-1 bg-black border border-zinc-800 rounded-full text-xs text-emerald-500/80">
+                        <span key={tech} className="px-3 py-1.5 bg-black border border-zinc-800 rounded-md text-xs text-emerald-400 hover:border-emerald-500/50 transition-colors">
                             {tech}
                         </span>
                     ))}
@@ -93,62 +96,98 @@ export default function ProjectDetails() {
                 <span className="text-zinc-100">readme {project.id}</span>
             </div>
             
-            <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/10 font-mono text-sm space-y-6">
-                <div className="grid grid-cols-[100px_1fr] gap-4">
-                    <span className="text-zinc-500">Problem</span>
-                    <span className="text-zinc-300">{project.problem}</span>
+            <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/10 font-mono text-sm space-y-5">
+                <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+                    <span className="text-zinc-500 font-semibold">Problem</span>
+                    <span className="text-zinc-300 leading-relaxed">{project.problem}</span>
                 </div>
-                <div className="grid grid-cols-[100px_1fr] gap-4">
-                    <span className="text-zinc-500">Solution</span>
-                    <span className="text-zinc-300">{project.solution}</span>
+                <div className="border-t border-zinc-800/50 pt-4">
+                    <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+                        <span className="text-zinc-500 font-semibold">Solution</span>
+                        <span className="text-zinc-300 leading-relaxed">{project.solution}</span>
+                    </div>
                 </div>
-                <div className="grid grid-cols-[100px_1fr] gap-4">
-                    <span className="text-zinc-500">Highlights</span>
-                    <span className="text-zinc-300">{project.highlights}</span>
+                <div className="border-t border-zinc-800/50 pt-4">
+                    <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+                        <span className="text-zinc-500 font-semibold">Highlights</span>
+                        <span className="text-zinc-300 leading-relaxed">{project.highlights}</span>
+                    </div>
                 </div>
-                <div className="grid grid-cols-[100px_1fr] gap-4">
-                    <span className="text-zinc-500">Status</span>
-                    <span className="text-emerald-400">{project.status}</span>
+                <div className="border-t border-zinc-800/50 pt-4">
+                    <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                        <span className="text-zinc-500 font-semibold">Status</span>
+                        <span className="text-emerald-400 font-medium">{project.status}</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         {/* Actions */}
-         <div className="space-y-4">
+         <div className="space-y-5">
              <div className="text-zinc-500">
                 <span className="text-emerald-500 font-bold mr-2">$</span>
                 <span className="text-zinc-100">links {project.id}</span>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href={project.links.demo} target="_blank" rel="noreferrer" className="flex items-center justify-between px-4 py-3 border border-zinc-800 rounded bg-zinc-900/20 hover:bg-zinc-900 hover:border-emerald-500/50 hover:text-emerald-400 transition-all group">
-                    <div className="flex items-center gap-3">
-                        <ExternalLink size={16} />
-                        <span>Open Live Demo</span>
-                    </div>
-                    <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {project.category === "featured" ? (
+                    <button className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-emerald-500/50 hover:text-emerald-400 transition-all group opacity-50 cursor-not-allowed">
+                        <div className="flex items-center gap-3">
+                            <ExternalLink size={16} />
+                            <span className="font-medium">Live Demo</span>
+                        </div>
+                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                ) : (
+                    <a href={project.links.demo} target="_blank" rel="noreferrer" className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-emerald-500/50 hover:text-emerald-400 transition-all group">
+                        <div className="flex items-center gap-3">
+                            <ExternalLink size={16} />
+                            <span className="font-medium">Live Demo</span>
+                        </div>
+                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                )}
 
-                <a href={project.links.docs || "#"} target="_blank" rel="noreferrer" className="flex items-center justify-between px-4 py-3 border border-zinc-800 rounded bg-zinc-900/20 hover:bg-zinc-900 hover:border-blue-500/50 hover:text-blue-400 transition-all group">
-                    <div className="flex items-center gap-3">
-                        <Eye size={16} />
-                        <span>Read Docs</span>
-                    </div>
-                     <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                {project.category === "featured" || project.id === "temp-conv" ? (
+                    <button className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-blue-500/50 hover:text-blue-400 transition-all group opacity-50 cursor-not-allowed">
+                        <div className="flex items-center gap-3">
+                            <Eye size={16} />
+                            <span className="font-medium">Documentation</span>
+                        </div>
+                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                ) : (
+                    <a href={project.links.docs || "#"} target="_blank" rel="noreferrer" className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-blue-500/50 hover:text-blue-400 transition-all group">
+                        <div className="flex items-center gap-3">
+                            <Eye size={16} />
+                            <span className="font-medium">Documentation</span>
+                        </div>
+                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                )}
 
-                 <a href={project.links.repo} target="_blank" rel="noreferrer" className="flex items-center justify-between px-4 py-3 border border-zinc-800 rounded bg-zinc-900/20 hover:bg-zinc-900 hover:border-purple-500/50 hover:text-purple-400 transition-all group">
-                    <div className="flex items-center gap-3">
-                        <Github size={16} />
-                        <span>View Repo</span>
-                    </div>
-                     <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                {project.category === "featured" || project.id === "temp-conv" ? (
+                    <button className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-purple-500/50 hover:text-purple-400 transition-all group opacity-50 cursor-not-allowed">
+                        <div className="flex items-center gap-3">
+                            <Github size={16} />
+                            <span className="font-medium">Source Code</span>
+                        </div>
+                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                ) : (
+                    <a href={project.links.repo} target="_blank" rel="noreferrer" className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-purple-500/50 hover:text-purple-400 transition-all group">
+                        <div className="flex items-center gap-3">
+                            <Github size={16} />
+                            <span className="font-medium">Source Code</span>
+                        </div>
+                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                )}
 
-                 <button className="flex items-center justify-between px-4 py-3 border border-zinc-800 rounded bg-zinc-900/20 hover:bg-zinc-900 hover:border-yellow-500/50 hover:text-yellow-400 transition-all group opacity-50 cursor-not-allowed">
+                 <button className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-yellow-500/50 hover:text-yellow-400 transition-all group opacity-50 cursor-not-allowed">
                     <div className="flex items-center gap-3">
                         <TerminalIcon size={16} />
-                        <span>Request Access</span>
+                        <span className="font-medium">Request Access</span>
                     </div>
                      <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>

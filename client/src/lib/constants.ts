@@ -97,11 +97,11 @@ export const PROJECTS: Project[] = [
     id: "velammal-training",
     name: "Velammal Training",
     shortDescription: "Institute Website",
-    techStack: ["React", "Tailwind", "Framer Motion"],
+    techStack: ["React", "Tailwind", "Typescript"],
     problem: "Outdated digital presence for a training institute.",
     solution: "Modern, responsive website with course catalogs and registration.",
     highlights: "Increased enrollment inquiries by 40%.",
-    status: "Live",
+    status: "In Development",
     category: "featured",
     collaborators: [{ name: "Yuvaraj M", linkedin: "#" }],
     links: { demo: "#", repo: "#" }
@@ -110,8 +110,8 @@ export const PROJECTS: Project[] = [
     id: "velammal-ecommerce",
     name: "Velammal Store",
     shortDescription: "Ecommerce Platform",
-    techStack: ["Next.js", "Stripe", "Sanity"],
-    problem: "Need for an online store to sell institute materials.",
+    techStack: ["React", "Typescript", "Postgresql"],
+    problem: "Need for an online store to sell electronic products.",
     solution: "Full-stack ecommerce with secure payments and inventory sync.",
     highlights: "Seamless checkout flow, admin dashboard.",
     status: "In Development",
@@ -127,43 +127,47 @@ export const PROJECTS: Project[] = [
     shortDescription: "Personal Assistant",
     techStack: ["Python", "GIT", "Streamlit"],
     problem: "Need for a local, privacy-focused personal assistant.",
-    solution: "Python-based voice assistant with local LLM integration.",
-    highlights: "Voice recognition, system control, offline capabilities.",
+    solution: "Python-based Personal assistant with local LLM integration.",
+    highlights: "Personalization, system control, Decision making capabilities.",
     status: "Stable",
     category: "hobby",
     collaborators: [{ name: "Sajeetha P", linkedin: "#" }],
-    links: { demo: "#", repo: "https://github.com/madheshr005/jarvis" }
+    links: { demo: "https://jarvispersonalai.streamlit.app/", repo: "https://github.com/Madhesh005/Jarvis_AI", docs: "https://github.com/Madhesh005/Jarvis_AI" }
   },
   {
     id: "dynamic-todo",
     name: "Dynamic ToDo",
     shortDescription: "Smart Task Manager",
-    techStack: ["React", "LocalStorage", "DnD"],
+    techStack: ["React", "LocalStorage", "Typescript"],
     problem: "Standard todo apps lack flexibility in prioritization.",
     solution: "Drag-and-drop interface with dynamic priority sorting.",
-    highlights: "Intuitive UX, persistent local storage, dark mode.",
+    highlights: "Intuitive UX, persistent local storage, Mobile Responsive.",
     status: "Completed",
     category: "hobby",
-    links: { demo: "#", repo: "#" }
+    links: { demo: "https://todoapp-kappa-flax-66.vercel.app/", repo: "https://github.com/Madhesh005/TodoAppFrontend", docs: "https://github.com/Madhesh005/TodoAppBackend"}
   },
   {
     id: "ascendra",
     name: "Ascendra",
-    shortDescription: "Project Management",
-    techStack: ["MERN", "Socket.io", "Redux"],
-    problem: "Team collaboration tools are often too complex or expensive.",
-    solution: "Streamlined project management tool for small agile teams.",
-    highlights: "Real-time updates, kanban board, team chat.",
+    shortDescription: "Gamified Focus & Well-Being Platform",
+    techStack: ["MongoDB", "Flutter", "Dart"],
+    problem: "Excessive social media usage leads to distraction, poor focus, reduced productivity, and declining mental well-being.",
+    solution: "Ascendra helps users reduce digital addiction through a gamified creature-development system where productivity and well-being activities generate XP instead of screen time.",
+    highlights: "Gamified creature evolution, focus & wellness activities, social media blocking, team-based XP, weekly productivity reports.",
     status: "Alpha",
-    category: "hobby",
+    category: "featured",
     collaborators: [
       { name: "Gokul Jayachandran", linkedin: "#" },
       { name: "Yogesh Odayar P S", linkedin: "#" },
-      { name: "Nithiashree M", linkedin: "#" },
+      { name: "Nithishree M", linkedin: "#" },
       { name: "Lokesh T A", linkedin: "#" }
     ],
-    links: { demo: "#", repo: "#" }
+    links: {
+      demo: "#",
+      repo: "#"
+    }
   },
+
 
   // --- INTERNSHIP PROJECTS (Prodigy) ---
   {
@@ -177,7 +181,7 @@ export const PROJECTS: Project[] = [
     status: "Completed",
     category: "internship",
     company: "Prodigy Infotech",
-    links: { demo: "#", repo: "#" }
+    links: { demo: "https://nostra-ashen.vercel.app/", repo: "https://github.com/Madhesh005/Nostra_Ecommerce", docs: "https://github.com/Madhesh005/Nostra_Ecommerce" }
   },
   {
     id: "temp-conv",
@@ -190,7 +194,7 @@ export const PROJECTS: Project[] = [
     status: "Completed",
     category: "internship",
     company: "Prodigy Infotech",
-    links: { demo: "#", repo: "#" }
+    links: { demo: "https://madheshworks.netlify.app/temperature_conversion_program/", repo: "" }
   },
   {
     id: "tictactoe",
@@ -203,20 +207,20 @@ export const PROJECTS: Project[] = [
     status: "Completed",
     category: "internship",
     company: "Prodigy Infotech",
-    links: { demo: "#", repo: "#" }
+    links: { demo: "https://madheshworks.netlify.app/tictactoe/", repo: "https://github.com/Madhesh005/TIC_TAC_TOE", docs: "https://github.com/Madhesh005/TIC_TAC_TOE"}
   },
   {
     id: "stopwatch",
     name: "Stopwatch",
     shortDescription: "Time Tracking",
-    techStack: ["JS", "Intervals"],
+    techStack: ["JS", "Intervals", "DOM"],
     problem: "Precise time tracking requirement.",
     solution: "Accurate stopwatch with lap functionality.",
     highlights: "Millisecond precision, lap history.",
     status: "Completed",
     category: "internship",
     company: "Prodigy Infotech",
-    links: { demo: "#", repo: "#" }
+    links: { demo: "https://madheshworks.netlify.app/stopwatch_web_application/", repo: "https://github.com/Madhesh005/StopWatch", docs: "https://github.com/Madhesh005/StopWatch" }
   },
 
   // --- INTERNSHIP PROJECTS (Wealth Empires) ---
@@ -224,47 +228,47 @@ export const PROJECTS: Project[] = [
     id: "wealth-empires",
     name: "Wealth Empires",
     shortDescription: "Company Website",
-    techStack: ["HTML", "CSS", "JS"],
+    techStack: ["React", "MERN", "TypeScript"],
     problem: "Need for a high-performance landing page.",
-    solution: "Responsive, semantic HTML5/CSS3 implementation.",
+    solution: "Responsive, Professional Website",
     highlights: "99/100 Lighthouse score, sub-second load time.",
     status: "Live",
     category: "internship",
     company: "Wealth Empires",
     collaborators: [{ name: "Lokesh TA", linkedin: "#" }],
-    links: { demo: "#", repo: "#" }
+    links: { demo: "https://wealthempires.in/", repo: "https://github.com/Madhesh005/wealth_empires_final", docs: "https://github.com/Madhesh005/wealth_empires_final" }
   }
 ];
 
 export const SKILLS = {
   frontend: [
-    { name: "JavaScript / TypeScript", level: "expert" },
-    { name: "React.js / Next.js", level: "advanced" },
+    { name: "JavaScript / TypeScript", level: "intermediate" },
+    { name: "React.js", level: "advanced" },
     { name: "Tailwind CSS", level: "expert" },
-    { name: "Framer Motion", level: "advanced" }
   ],
   backend: [
     { name: "Node.js / Express", level: "advanced" },
     { name: "Python", level: "advanced" },
-    { name: "PostgreSQL / MongoDB", level: "advanced" },
-    { name: "Go", level: "intermediate" }
+    { name: "PostgreSQL", level: "advanced" },
+    { name: "MongoDB", level: "intermediate" }
   ],
   devops: [
     { name: "Docker / CI/CD", level: "strong" },
-    { name: "AWS / Vercel", level: "strong" },
-    { name: "Linux / Bash", level: "expert" }
+    { name: "Vercel", level: "strong" },
+    { name: "Render", level: "strong" },
+    { name: "Netlify", level: "strong" }
   ],
   ai: [
     { name: "LLM Integration", level: "strong" },
-    { name: "RAG Pipelines", level: "strong" },
-    { name: "LangChain", level: "intermediate" }
+    { name: "RAG Pipelines", level: "beginner" },
+    { name: "LangChain", level: "beginner" }
   ]
 };
 
 export const SOCIALS = {
-  github: "https://github.com/madheshr005",
+  github: "https://github.com/madhesh005",
   linkedin: "https://linkedin.com/in/madheshr005",
-  twitter: "https://twitter.com/alex_builds",
+  instagram: "https://www.instagram.com/madhesh_2005/",
   email: "madheshr005@gmail.com",
   phone: "+91 9176378183",
   location: "Chennai, India"
