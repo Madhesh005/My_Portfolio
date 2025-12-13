@@ -7,14 +7,9 @@ export default function Projects() {
   const [_, setLocation] = useLocation();
 
   const handleProjectClick = (projectId: string) => {
-    // Dispatch event to type the command into the terminal input
-    // Using the project ID as the command alias (we defined aliases in CommandInput)
-    // Or we can use "preview <id>"
-    // The user requirement: "automatically type the keyword of each project... to search"
-    // And "when I type the wealthempires command it has to go to..."
-    
-    // We'll use the ID directly as the command, assuming aliases are set up or ID works
-    const command = projectId; 
+    // "when I click the wealth empires... it types like wealth-empires... but real key is wealthempires"
+    // So we remove hyphens to match the mapping in CommandInput
+    const command = projectId.replace(/-/g, ""); 
     
     const event = new CustomEvent('terminal:type', { 
         detail: { 

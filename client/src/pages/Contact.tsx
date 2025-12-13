@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState, useRef, useEffect } from "react";
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from "lucide-react";
 
-type Step = "NAME" | "LINKEDIN" | "MESSAGE" | "CONFIRM";
+type Step = "NAME" | "EMAIL" | "LINKEDIN" | "MESSAGE" | "CONFIRM";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -17,6 +17,7 @@ export default function Contact() {
   // Data store
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     linkedin: "",
     message: ""
   });
@@ -39,6 +40,10 @@ export default function Contact() {
         if (step === "NAME") {
             setHistory(prev => [...prev, { label: "type your name ...", value }]);
             setFormData(prev => ({ ...prev, name: value }));
+            setStep("EMAIL");
+        } else if (step === "EMAIL") {
+            setHistory(prev => [...prev, { label: "type your email ...", value }]);
+            setFormData(prev => ({ ...prev, email: value }));
             setStep("LINKEDIN");
         } else if (step === "LINKEDIN") {
              setHistory(prev => [...prev, { label: "type your linkedin_id ...", value }]);
@@ -59,6 +64,10 @@ export default function Contact() {
 
              await new Promise(resolve => setTimeout(resolve, 2000));
              
+             // In a real app, this would use an email API (SendGrid, EmailJS, etc.)
+             // Since this is frontend-only mockup, we simulate success.
+             // To actually send email, we would need backend integration.
+             
              toast({
                 title: "Message Sent",
                 description: `Delivered to ${SOCIALS.email}`,
@@ -70,7 +79,7 @@ export default function Contact() {
              setTimeout(() => {
                  setStep("NAME");
                  setHistory([]);
-                 setFormData({ name: "", linkedin: "", message: "" });
+                 setFormData({ name: "", email: "", linkedin: "", message: "" });
              }, 5000);
         }
     }
@@ -121,6 +130,7 @@ export default function Contact() {
                             <span className="text-emerald-500 font-bold">?</span>
                             <span>
                                 {step === "NAME" && "type your name ..."}
+                                {step === "EMAIL" && "type your email ..."}
                                 {step === "LINKEDIN" && "type your linkedin_id ..."}
                                 {step === "MESSAGE" && "type message"}
                             </span>

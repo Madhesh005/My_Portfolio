@@ -1,5 +1,5 @@
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState, useRef } from "react";
 import { CommandInput } from "../terminal/CommandInput";
 import { useLocation } from "wouter";
 import { Download, Linkedin, Home as HomeIcon } from "lucide-react";
@@ -14,12 +14,18 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
   const [location, setLocation] = useLocation();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showContent, setShowContent] = useState(true);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Transition Logic
   useEffect(() => {
     // When location changes, trigger transition
     setIsTransitioning(true);
     setShowContent(false);
+    
+    // Scroll to top of content
+    if (contentRef.current) {
+        contentRef.current.scrollTop = 0;
+    }
 
     // Simulate "loading" phase
     const timer = setTimeout(() => {
@@ -88,7 +94,10 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
         </div>
 
         {/* Content Area */}
-        <div className="flex-1 bg-black/50 border-x border-b border-zinc-800 rounded-b-lg p-4 md:p-8 overflow-y-auto scrollbar-hide min-h-[60vh] relative shadow-2xl shadow-black">
+        <div 
+            ref={contentRef}
+            className="flex-1 bg-black/50 border-x border-b border-zinc-800 rounded-b-lg p-4 md:p-8 overflow-y-auto scrollbar-hide min-h-[60vh] relative shadow-2xl shadow-black"
+        >
             
             {/* Transition Overlay */}
             {isTransitioning && (

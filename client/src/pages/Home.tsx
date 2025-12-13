@@ -11,6 +11,19 @@ export default function Home() {
 
   const featuredProjects = PROJECTS.slice(0, 4);
 
+  const handleProjectClick = (projectId: string) => {
+    // "when I click the projects in the highlights it has to type the keyword"
+    const command = projectId.replace(/-/g, "");
+    
+    const event = new CustomEvent('terminal:type', { 
+        detail: { 
+            text: command, 
+            submit: true 
+        } 
+    });
+    window.dispatchEvent(event);
+  };
+
   return (
     <TerminalLayout>
       <div className="space-y-8 animate-in fade-in duration-500">
@@ -94,7 +107,7 @@ export default function Home() {
                     {featuredProjects.map(project => (
                         <button 
                             key={project.id}
-                            onClick={() => setLocation(`/project/${project.id}`)}
+                            onClick={() => handleProjectClick(project.id)}
                             className="group flex flex-col gap-1 p-3 border border-zinc-800 rounded bg-black hover:bg-zinc-900 hover:border-zinc-700 transition-all text-left"
                         >
                             <div className="flex justify-between items-center w-full">
