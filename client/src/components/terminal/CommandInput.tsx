@@ -15,6 +15,10 @@ export function CommandInput({ onCommand }: CommandInputProps) {
   const { toast } = useToast();
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  
+  // Detect mobile device
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   window.innerWidth <= 768;
 
   // Handle external "type" events
   useEffect(() => {
@@ -39,8 +43,15 @@ export function CommandInput({ onCommand }: CommandInputProps) {
     return () => window.removeEventListener('terminal:type', handleType as EventListener);
   }, [location]); 
 
-  // Smart Auto-focus
+  // Smart Auto-focus (disabled on mobile to prevent keyboard issues)
   useEffect(() => {
+    // Detect if device is mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                     window.innerWidth <= 768;
+    
+    // Only enable auto-focus on desktop
+    if (isMobile) return;
+
     const handleClick = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
         if (
@@ -51,7 +62,8 @@ export function CommandInput({ onCommand }: CommandInputProps) {
             target.closest('a') || 
             target.closest('button') || 
             target.closest('input') ||
-            target.closest('textarea')
+            target.closest('textarea') ||
+            target.closest('[data-contact-form]') // Exclude contact form area
         ) return;
         
         inputRef.current?.focus();
@@ -209,7 +221,10 @@ export function CommandInput({ onCommand }: CommandInputProps) {
   
   return (
     <div className="w-full flex flex-col gap-2">
-      <div className="relative flex items-center w-full bg-zinc-900/80 border border-zinc-700 rounded-lg px-4 py-3 mb-3 shadow-2xl backdrop-blur-md focus-within:ring-1 focus-within:ring-emerald-500/50 focus-within:border-emerald-500/50 transition-all cursor-text overflow-hidden" onClick={() => inputRef.current?.focus()}>
+      <div className="relative flex items-center w-full bg-zinc-900/80 border border-zinc-700 rounded-lg px-4 py-3 mb-3 shadow-2xl backdrop-blur-md focus-within:ring-1 focus-within:ring-emerald-500/50 focus-within:border-emerald-500/50 transition-all cursor-text overflow-hidden" onClick={() => {
+        // Only focus on explicit click for mobile, not auto-focus
+        inputRef.current?.focus();
+      }}>
         <span className="text-emerald-500 font-bold mr-3 font-mono shrink-0 whitespace-nowrap hidden sm:inline">{getPromptPath()}</span>
         <span className="text-emerald-500 font-bold mr-3 font-mono shrink-0 whitespace-nowrap sm:hidden">$</span>
         
@@ -228,7 +243,7 @@ export function CommandInput({ onCommand }: CommandInputProps) {
           onKeyDown={handleKeyDown}
           className="absolute inset-0 w-full h-full opacity-0 cursor-text"
           autoComplete="off"
-          autoFocus
+          autoFocus={!isMobile}
         />
       </div>
     </div>

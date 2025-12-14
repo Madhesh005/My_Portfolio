@@ -67,6 +67,7 @@ export default function Contact() {
         e.stopPropagation();
 
         if (e.key === "Enter") {
+            e.preventDefault(); // Prevent default form submission behavior
             if (!inputValue.trim()) return;
 
             const value = inputValue.trim();
@@ -152,9 +153,15 @@ export default function Contact() {
                 {/* Interactive CLI Form */}
                 <div
                     className="border border-zinc-800 rounded-lg p-6 bg-black/50 font-mono text-sm shadow-inner min-h-[300px] flex flex-col cursor-text"
+                    data-contact-form
                     onClick={(e) => {
                         e.stopPropagation(); // Stop propagation to prevent global input focus
-                        inputRef.current?.focus();
+                        // Only focus on desktop, let mobile users tap the input directly
+                        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                                        window.innerWidth <= 768;
+                        if (!isMobile) {
+                            inputRef.current?.focus();
+                        }
                     }}
                 >
                     <div className="text-zinc-500 mb-6 text-xs border-b border-zinc-800 pb-2">
@@ -195,6 +202,8 @@ export default function Contact() {
                                         value={inputValue}
                                         onChange={e => setInputValue(e.target.value)}
                                         onKeyDown={handleKeyDown}
+                                        onFocus={(e) => e.stopPropagation()}
+                                        onClick={(e) => e.stopPropagation()}
                                         className="absolute inset-0 w-full h-full opacity-0 cursor-text"
                                         autoFocus
                                     />
