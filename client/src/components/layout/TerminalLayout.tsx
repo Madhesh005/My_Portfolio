@@ -132,8 +132,22 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
 
         {/* Fixed Command Input - Floating at Bottom */}
         <div className="fixed bottom-3 left-0 right-0 z-50 px-8 md:px-16 lg:px-24 animate-in slide-in-from-bottom-2 duration-300">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto space-y-2">
             <CommandInput />
+            {/* Command Hint */}
+            <div className="text-center text-xs text-zinc-600 font-mono">
+              <span className="hidden sm:inline">Try: </span>
+              <span className="text-emerald-500/70">ls</span>
+              <span className="text-zinc-700 mx-1">|</span>
+              <span className="text-blue-400/70">projects</span>
+              <span className="text-zinc-700 mx-1">|</span>
+              <span className="text-purple-400/70">skills</span>
+              <span className="text-zinc-700 mx-1">|</span>
+              <span className="text-yellow-400/70">contact</span>
+              <span className="text-zinc-700 mx-1">|</span>
+              <span className="text-pink-400/70">achievements</span>
+              <span className="hidden sm:inline text-zinc-600 ml-2">for navigation</span>
+            </div>
           </div>
         </div>
       </div>
