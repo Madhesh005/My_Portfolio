@@ -2,12 +2,11 @@
 import { TerminalLayout } from "@/components/layout/TerminalLayout";
 import { Typewriter } from "@/components/terminal/Typewriter";
 import { ArrowUpRight } from "lucide-react";
-import { useLocation } from "wouter";
+
 import { PROJECTS } from "@/lib/constants";
-import avatarImage from "@assets/generated_images/pixel_art_developer_avatar.png";
+const avatarImage = "/assets/images/pixel_art_developer_avatar.png";
 
 export default function Home() {
-  const [_, setLocation] = useLocation();
 
   const featuredProjects = PROJECTS.slice(0, 4);
 
