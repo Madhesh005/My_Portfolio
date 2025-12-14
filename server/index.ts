@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import cors from "cors";
-import { registerRoutes } from "./routes";
+import { registerRoutes } from "./routes.js";
 import { createServer } from "http";
 
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 // CORS configuration for separate frontend deployment
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-frontend-domain.vercel.app'] // Replace with your actual Vercel domain
+    ? ['https://madheshworks.vercel.app'] // Replace with your actual Vercel domain
     : ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:5000'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
