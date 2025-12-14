@@ -90,7 +90,7 @@ export const PROJECTS: Project[] = [
     highlights: "Integrated OpenAI API, custom prompt engineering, PDF report generation.",
     status: "Private Beta",
     category: "featured",
-    collaborators: [{ name: "Lokesh TA", linkedin: "#" }],
+    collaborators: [{ name: "Lokesh TA", linkedin: "https://www.linkedin.com/in/lokesh-t-a-36b1512a6" }],
     links: { demo: "https://pathlens.ai", repo: "#", docs: "#" }
   },
   {
@@ -157,10 +157,10 @@ export const PROJECTS: Project[] = [
     status: "Alpha",
     category: "featured",
     collaborators: [
-      { name: "Gokul Jayachandran", linkedin: "#" },
-      { name: "Yogesh Odayar P S", linkedin: "#" },
-      { name: "Nithishree M", linkedin: "#" },
-      { name: "Lokesh T A", linkedin: "#" }
+      { name: "Gokul Jayachandran", linkedin: "https://www.linkedin.com/in/gokeeel" },
+      { name: "Yogesh Odayar P S", linkedin: "https://www.linkedin.com/in/yogesh-odayar-p-s-8a2077293" },
+      { name: "Nithishree M", linkedin: "https://www.linkedin.com/in/nithiashree-meyyappan" },
+      { name: "Lokesh T A", linkedin: "https://www.linkedin.com/in/lokesh-t-a-36b1512a6" }
     ],
     links: {
       demo: "#",
@@ -235,7 +235,7 @@ export const PROJECTS: Project[] = [
     status: "Live",
     category: "internship",
     company: "Wealth Empires",
-    collaborators: [{ name: "Lokesh TA", linkedin: "#" }],
+    collaborators: [{ name: "Lokesh TA", linkedin: "https://www.linkedin.com/in/lokesh-t-a-36b1512a6" }],
     links: { demo: "https://wealthempires.in/", repo: "https://github.com/Madhesh005/wealth_empires_final", docs: "https://github.com/Madhesh005/wealth_empires_final" }
   }
 ];

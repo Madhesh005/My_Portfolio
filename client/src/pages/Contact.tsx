@@ -3,7 +3,7 @@ import { TerminalLayout } from "@/components/layout/TerminalLayout";
 import { SOCIALS } from "@/lib/constants";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useRef, useEffect } from "react";
-import { Mail, Phone, MapPin, Github, Linkedin, Instagram } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, Instagram } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
 type Step = "NAME" | "EMAIL" | "LINKEDIN" | "MESSAGE" | "CONFIRM";
@@ -127,14 +127,13 @@ export default function Contact() {
             emailjs.init(publicKey);
 
             const templateParams = {
-                from_name: formData.name,
-                from_email: formData.email,
-                linkedin_profile: formData.linkedin,
+                user_name: formData.name,
+                user_email: formData.email,
+                user_linkedin: formData.linkedin || 'Not provided',
                 message: formData.message,
+                time: new Date().toLocaleString(),
                 to_email: 'madheshr005@gmail.com',
                 reply_to: formData.email,
-                // Add timestamp for better tracking
-                timestamp: new Date().toLocaleString(),
             };
 
             const result = await emailjs.send(serviceId, templateId, templateParams);
@@ -392,10 +391,6 @@ export default function Contact() {
                             <div className="flex items-center gap-3 text-sm text-zinc-300 border border-zinc-800 p-2 rounded bg-black/50">
                                 <Mail size={14} className="text-zinc-500" />
                                 <a href={`mailto:${SOCIALS.email}`} className="hover:text-emerald-400 transition-colors">{SOCIALS.email}</a>
-                            </div>
-                            <div className="flex items-center gap-3 text-sm text-zinc-300 border border-zinc-800 p-2 rounded bg-black/50">
-                                <Phone size={14} className="text-zinc-500" />
-                                <span>{SOCIALS.phone}</span>
                             </div>
                             <div className="flex items-center gap-3 text-sm text-zinc-300 border border-zinc-800 p-2 rounded bg-black/50">
                                 <MapPin size={14} className="text-zinc-500" />
