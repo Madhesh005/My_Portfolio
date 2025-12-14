@@ -279,6 +279,7 @@ export const COMMANDS = [
   { cmd: "projects", desc: "View project portfolio" },
   { cmd: "internships", desc: "View work experience" },
   { cmd: "skills", desc: "List technical skills" },
+  { cmd: "achievements", desc: "View accomplishments and certifications" },
   { cmd: "resume", desc: "Download PDF resume" },
   { cmd: "contact", desc: "Send a message" },
   { cmd: "home", desc: "Return to start" }

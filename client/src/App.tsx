@@ -12,6 +12,7 @@ import Skills from "@/pages/Skills";
 import Contact from "@/pages/Contact";
 import ListCommands from "@/pages/ListCommands";
 import Internships from "@/pages/Internships";
+import Achievements from "@/pages/Achievements";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/projects" component={Projects} />
       <Route path="/project/:id" component={ProjectDetails} />
       <Route path="/skills" component={Skills} />
+      <Route path="/achievements" component={Achievements} />
       <Route path="/contact" component={Contact} />
       <Route path="/ls" component={ListCommands} />
       <Route path="/internships" component={Internships} />

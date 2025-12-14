@@ -147,6 +147,11 @@ export function CommandInput({ onCommand }: CommandInputProps) {
       case "stack":
         setLocation("/skills");
         break;
+      case "achievements":
+      case "accomplishments":
+      case "certs":
+        setLocation("/achievements");
+        break;
       case "contact":
       case "email":
         setLocation("/contact");
@@ -205,6 +210,7 @@ export function CommandInput({ onCommand }: CommandInputProps) {
     
     if (location === "/projects") return `${pathStr}\\Projects>`;
     if (location === "/skills") return `${pathStr}\\Skills>`;
+    if (location === "/achievements") return `${pathStr}\\Achievements>`;
     if (location === "/contact") return `${pathStr}\\Contact>`;
     if (location === "/ls") return `${pathStr}\\Ls>`;
     if (location === "/internships") return `${pathStr}\\Internships>`;
