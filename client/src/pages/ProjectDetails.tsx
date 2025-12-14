@@ -2,8 +2,8 @@
 import { TerminalLayout } from "@/components/layout/TerminalLayout";
 import { PROJECTS } from "@/lib/constants";
 import { useRoute } from "wouter";
-import { ExternalLink, Github, Eye, Terminal as TerminalIcon, ArrowUpRight, Users } from "lucide-react";
-// Default preview image no longer needed
+import { ExternalLink, Github, ArrowUpRight, Users } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
 // Images no longer needed - all preview images removed
@@ -12,12 +12,29 @@ export default function ProjectDetails() {
   const [match, params] = useRoute("/project/:id");
   const projectId = params?.id;
   const project = PROJECTS.find(p => p.id === projectId);
-  // Image state no longer needed - all preview images removed
-
+  const { toast } = useToast();
+  
   // Remove preview images for ALL projects
   const shouldShowImage = false;
 
-  // Image function no longer needed - all preview images removed
+  // Handle disabled button clicks with toast messages
+  const handleDisabledLiveDemoClick = () => {
+    toast({
+      title: "Currently in Development",
+      description: "This project's live demo is not yet available. Stay tuned for updates!",
+      className: "font-mono bg-zinc-900 text-yellow-400 border-zinc-800",
+      duration: 7000
+    });
+  };
+
+  const handleDisabledSourceCodeClick = () => {
+    toast({
+      title: "Source Code Restricted",
+      description: "The source code for this project is currently private and under development.",
+      className: "font-mono bg-zinc-900 text-purple-400 border-zinc-800",
+      duration: 7000
+    });
+  };
 
   if (!project) {
     return (
@@ -130,8 +147,12 @@ export default function ProjectDetails() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {/* Live Demo Button */}
                 {project.category === "featured" ? (
-                    <button className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-emerald-500/50 hover:text-emerald-400 transition-all group opacity-50 cursor-not-allowed">
+                    <button 
+                        onClick={handleDisabledLiveDemoClick}
+                        className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-emerald-500/50 hover:text-emerald-400 transition-all group opacity-50 cursor-pointer"
+                    >
                         <div className="flex items-center gap-3">
                             <ExternalLink size={16} />
                             <span className="font-medium">Live Demo</span>
@@ -148,26 +169,12 @@ export default function ProjectDetails() {
                     </a>
                 )}
 
+                {/* Source Code Button */}
                 {project.category === "featured" || project.id === "temp-conv" ? (
-                    <button className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-blue-500/50 hover:text-blue-400 transition-all group opacity-50 cursor-not-allowed">
-                        <div className="flex items-center gap-3">
-                            <Eye size={16} />
-                            <span className="font-medium">Documentation</span>
-                        </div>
-                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </button>
-                ) : (
-                    <a href={project.links.docs || "#"} target="_blank" rel="noreferrer" className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-blue-500/50 hover:text-blue-400 transition-all group">
-                        <div className="flex items-center gap-3">
-                            <Eye size={16} />
-                            <span className="font-medium">Documentation</span>
-                        </div>
-                        <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </a>
-                )}
-
-                {project.category === "featured" || project.id === "temp-conv" ? (
-                    <button className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-purple-500/50 hover:text-purple-400 transition-all group opacity-50 cursor-not-allowed">
+                    <button 
+                        onClick={handleDisabledSourceCodeClick}
+                        className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-purple-500/50 hover:text-purple-400 transition-all group opacity-50 cursor-pointer"
+                    >
                         <div className="flex items-center gap-3">
                             <Github size={16} />
                             <span className="font-medium">Source Code</span>
@@ -183,14 +190,6 @@ export default function ProjectDetails() {
                         <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
                 )}
-
-                 <button className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-yellow-500/50 hover:text-yellow-400 transition-all group opacity-50 cursor-not-allowed">
-                    <div className="flex items-center gap-3">
-                        <TerminalIcon size={16} />
-                        <span className="font-medium">Request Access</span>
-                    </div>
-                     <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </button>
             </div>
         </div>
 
