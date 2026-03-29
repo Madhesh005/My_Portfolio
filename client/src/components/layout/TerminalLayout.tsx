@@ -42,12 +42,12 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-black text-zinc-300 font-mono flex flex-col p-4 md:p-6 lg:p-12 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-zinc-300 font-mono flex flex-col p-2 sm:p-4 md:p-6 lg:p-12 relative overflow-hidden">
       {/* Top Bar */}
       <div className="w-full flex justify-between items-center mb-8 z-10">
-        <div className="flex items-center gap-2 text-sm text-zinc-500">
+        <div className="flex items-center gap-2 text-sm text-zinc-500 min-w-0">
           <span className="text-emerald-500 font-bold">Madheshr@portfolio:</span>
-          <span className="text-blue-400">{getPathBreadcrumb()}</span>
+          <span className="text-blue-400 hidden lg:inline">{getPathBreadcrumb()}</span>
         </div>
         
         <div className="flex gap-4">
@@ -96,7 +96,7 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
         {/* Content Area */}
         <div 
             ref={contentRef}
-            className="flex-1 bg-black/50 border-x border-b border-zinc-800 rounded-b-lg p-4 md:p-8 overflow-y-auto scrollbar-hide min-h-[60vh] relative shadow-2xl shadow-black pb-24"
+            className="flex-1 bg-black/50 border-x border-b border-zinc-800 rounded-b-lg p-3 sm:p-4 md:p-8 overflow-y-auto scrollbar-hide min-h-[60vh] relative shadow-2xl shadow-black pb-24"
         >
             
             {/* Transition Overlay */}
@@ -131,7 +131,7 @@ export function TerminalLayout({ children }: TerminalLayoutProps) {
         </div>
 
         {/* Fixed Command Input - Floating at Bottom */}
-        <div className="fixed bottom-3 left-0 right-0 z-50 px-8 md:px-16 lg:px-24 animate-in slide-in-from-bottom-2 duration-300">
+        <div className="fixed bottom-3 left-0 right-0 z-50 px-4 sm:px-8 md:px-16 lg:px-24 animate-in slide-in-from-bottom-2 duration-300">
           <div className="max-w-3xl mx-auto space-y-2">
             <CommandInput />
             {/* Command Hint */}

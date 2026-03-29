@@ -1,21 +1,24 @@
-
 import { TerminalLayout } from "@/components/layout/TerminalLayout";
 import { PROJECTS } from "@/lib/constants";
 import { useRoute } from "wouter";
 import { ExternalLink, Github, ArrowUpRight, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
-
-// Images no longer needed - all preview images removed
+import { DynamicTodoCaseStudy } from "@/components/DynamicTodoCaseStudy";
+import { JarvisAICaseStudy } from "@/components/JarvisAICaseStudy";
+import { WealthEmpiresCaseStudy } from "@/components/WealthEmpiresCaseStudy";
+import { CBlockCaseStudy } from "@/components/CBlockCaseStudy";
+import { ScamShieldCaseStudy } from "@/components/ScamShieldCaseStudy";
+import { ChainVoiceCaseStudy } from "@/components/ChainVoiceCaseStudy";
+import { ScanGuardCaseStudy } from "@/components/ScanGuardCaseStudy";
+import { DefiScoreCaseStudy } from "@/components/DefiScoreCaseStudy";
+import { PathLensAICaseStudy } from "@/components/PathLensAICaseStudy";
+import { AscendraCaseStudy } from "@/components/AscendraCaseStudy";
 
 export default function ProjectDetails() {
-  const [match, params] = useRoute("/project/:id");
+  const [, params] = useRoute("/project/:id");
   const projectId = params?.id;
   const project = PROJECTS.find(p => p.id === projectId);
   const { toast } = useToast();
-  
-  // Remove preview images for ALL projects
-  const shouldShowImage = false;
 
   // Handle disabled button clicks with toast messages
   const handleDisabledLiveDemoClick = () => {
@@ -44,6 +47,57 @@ export default function ProjectDetails() {
     );
   }
 
+  // Check if this is the Ascendra project for case study layout
+  if (project.id === "ascendra") {
+    return <AscendraCaseStudy project={project} />;
+  }
+
+  // Check if this is the PathLens AI project for case study layout
+  if (project.id === "pathlens") {
+    return <PathLensAICaseStudy project={project} />;
+  }
+
+  // Check if this is the DefiScore project for case study layout
+  if (project.id === "defiscore") {
+    return <DefiScoreCaseStudy project={project} />;
+  }
+
+  // Check if this is the ScanGuard project for case study layout
+  if (project.id === "scanguard") {
+    return <ScanGuardCaseStudy project={project} />;
+  }
+
+  // Check if this is the ChainVoice project for case study layout
+  if (project.id === "chainvoice") {
+    return <ChainVoiceCaseStudy project={project} />;
+  }
+
+  // Check if this is the ScamShield project for case study layout
+  if (project.id === "scamshield") {
+    return <ScamShieldCaseStudy project={project} />;
+  }
+
+  // Check if this is the CBlock project for case study layout
+  if (project.id === "cblock") {
+    return <CBlockCaseStudy project={project} />;
+  }
+
+  // Check if this is the Dynamic ToDo project for case study layout
+  if (project.id === "dynamic-todo") {
+    return <DynamicTodoCaseStudy project={project} />;
+  }
+
+  // Check if this is the Jarvis AI project for case study layout
+  if (project.id === "jarvis") {
+    return <JarvisAICaseStudy project={project} />;
+  }
+
+  // Check if this is the Wealth Empires project for case study layout
+  if (project.id === "wealth-empires") {
+    return <WealthEmpiresCaseStudy project={project} />;
+  }
+
+  // Default layout for other projects
   return (
     <TerminalLayout>
       <div className="space-y-8 animate-in fade-in duration-500 pb-12">
@@ -58,15 +112,15 @@ export default function ProjectDetails() {
             
             <div className="space-y-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-white flex items-center gap-3 flex-wrap">
-                        {project.name}
+                    <h1 className="text-xl sm:text-2xl font-bold text-white flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                        <span>{project.name}</span>
                         {project.company && (
-                            <span className="text-xs font-normal px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700">
+                            <span className="text-xs font-normal px-3 py-1 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700 w-fit">
                                 @{project.company}
                             </span>
                         )}
                     </h1>
-                    <div className="text-base font-normal text-zinc-400 mt-2">{project.shortDescription}</div>
+                    <div className="text-sm sm:text-base font-normal text-zinc-400 mt-2">{project.shortDescription}</div>
                 </div>
                 
                 <p className="text-zinc-400 text-sm leading-relaxed border-l-2 border-emerald-500/30 pl-4 bg-zinc-900/30 py-3 rounded-r">
@@ -85,12 +139,12 @@ export default function ProjectDetails() {
 
         {/* Collaborators Section */}
         {project.collaborators && project.collaborators.length > 0 && (
-            <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/10 flex items-center gap-4">
+            <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                 <div className="text-zinc-500 shrink-0 flex items-center gap-2">
                     <Users size={14} className="text-blue-400" />
                     <span className="font-bold text-xs uppercase tracking-widest">Team</span>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                     {project.collaborators.map((collab, i) => (
                         <a 
                             key={i} 
@@ -114,24 +168,24 @@ export default function ProjectDetails() {
             </div>
             
             <div className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/10 font-mono text-sm space-y-5">
-                <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+                <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-2 sm:gap-4 items-start">
                     <span className="text-zinc-500 font-semibold">Problem</span>
                     <span className="text-zinc-300 leading-relaxed">{project.problem}</span>
                 </div>
                 <div className="border-t border-zinc-800/50 pt-4">
-                    <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+                    <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-2 sm:gap-4 items-start">
                         <span className="text-zinc-500 font-semibold">Solution</span>
                         <span className="text-zinc-300 leading-relaxed">{project.solution}</span>
                     </div>
                 </div>
                 <div className="border-t border-zinc-800/50 pt-4">
-                    <div className="grid grid-cols-[120px_1fr] gap-4 items-start">
+                    <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-2 sm:gap-4 items-start">
                         <span className="text-zinc-500 font-semibold">Highlights</span>
                         <span className="text-zinc-300 leading-relaxed">{project.highlights}</span>
                     </div>
                 </div>
                 <div className="border-t border-zinc-800/50 pt-4">
-                    <div className="grid grid-cols-[120px_1fr] gap-4 items-center">
+                    <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-2 sm:gap-4 items-start sm:items-center">
                         <span className="text-zinc-500 font-semibold">Status</span>
                         <span className="text-emerald-400 font-medium">{project.status}</span>
                     </div>
@@ -170,7 +224,7 @@ export default function ProjectDetails() {
                 )}
 
                 {/* Source Code Button */}
-                {project.category === "featured" || project.id === "temp-conv" ? (
+                {project.category === "featured" ? (
                     <button 
                         onClick={handleDisabledSourceCodeClick}
                         className="flex items-center justify-between px-4 py-3.5 border border-zinc-800 rounded-md bg-zinc-900/20 hover:bg-zinc-900/40 hover:border-purple-500/50 hover:text-purple-400 transition-all group opacity-50 cursor-pointer"

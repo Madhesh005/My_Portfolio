@@ -32,21 +32,21 @@ export default function Internships() {
             {INTERNSHIPS.map((internship) => (
                 <div key={internship.id} className="border border-zinc-800 rounded-lg p-6 bg-zinc-900/20">
                     {/* Header */}
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b border-zinc-800 pb-4">
+                    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6 border-b border-zinc-800 pb-4">
                         <div>
-                            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                            <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
                                 <Building2 size={18} className="text-emerald-500" />
-                                {internship.company}
+                                <span className="break-all">{internship.company}</span>
                             </h2>
                             <div className="text-zinc-400 font-mono text-sm mt-1 flex items-center gap-2">
                                 <Briefcase size={14} />
                                 {internship.role}
                             </div>
                         </div>
-                        <div className="flex flex-col items-end text-xs text-zinc-500 font-mono gap-1">
+                        <div className="flex flex-col items-start lg:items-end text-xs text-zinc-500 font-mono gap-1">
                             <div className="flex items-center gap-2">
                                 <Calendar size={12} />
-                                {internship.duration}
+                                <span className="break-all">{internship.duration}</span>
                             </div>
                             <div className="flex items-center gap-2 px-2 py-1 rounded bg-zinc-900 border border-zinc-800">
                                 <MapPin size={12} />
@@ -72,7 +72,7 @@ export default function Internships() {
                     {internship.projects.length > 0 && (
                         <div>
                             <div className="text-xs text-zinc-500 font-bold mb-3 uppercase tracking-widest">Internship Projects</div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                                 {internship.projects.map(pid => {
                                     const project = PROJECTS.find(p => p.id === pid);
                                     if (!project) return null;
@@ -82,11 +82,11 @@ export default function Internships() {
                                             onClick={() => handleProjectClick(pid)}
                                             className="group border border-zinc-800 bg-black p-3 rounded hover:border-blue-500/50 cursor-pointer transition-all flex items-center justify-between"
                                         >
-                                            <div>
-                                                <div className="text-sm font-bold text-zinc-300 group-hover:text-blue-400">{project.name}</div>
-                                                <div className="text-[10px] text-zinc-500">{project.shortDescription}</div>
+                                            <div className="min-w-0 flex-1">
+                                                <div className="text-sm font-bold text-zinc-300 group-hover:text-blue-400 truncate">{project.name}</div>
+                                                <div className="text-[10px] text-zinc-500 truncate">{project.shortDescription}</div>
                                             </div>
-                                            <div className="text-zinc-600 group-hover:text-blue-400 text-xs">open ↗</div>
+                                            <div className="text-zinc-600 group-hover:text-blue-400 text-xs ml-2 shrink-0">open ↗</div>
                                         </div>
                                     );
                                 })}

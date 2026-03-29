@@ -55,6 +55,7 @@ export default function Projects() {
   const featured = PROJECTS.filter(p => p.category === "featured");
   const internship = PROJECTS.filter(p => p.category === "internship");
   const hobby = PROJECTS.filter(p => p.category === "hobby");
+  const upcoming = PROJECTS.filter(p => p.category === "upcoming");
 
   return (
     <TerminalLayout>
@@ -101,6 +102,19 @@ export default function Projects() {
                 {hobby.map(renderProjectCard)}
             </div>
         </div>
+
+        {/* Under Development Projects */}
+        {upcoming.length > 0 && (
+          <div className="space-y-4">
+              <div className="text-zinc-500 text-sm mb-2 flex items-center gap-2">
+                  <span className="text-emerald-500 font-bold">$</span>
+                  <span className="text-orange-400 font-bold">ls --under-dev</span>
+              </div>
+              <div className="grid gap-4">
+                  {upcoming.map(renderProjectCard)}
+              </div>
+          </div>
+        )}
 
       </div>
     </TerminalLayout>

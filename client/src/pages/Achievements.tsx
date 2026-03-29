@@ -24,20 +24,20 @@ export default function Achievements() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/20 text-center">
-              <div className="text-2xl font-bold text-emerald-400 mb-1">1500+</div>
-              <div className="text-xs text-zinc-400 uppercase tracking-wider">Problems Solved</div>
+              <div className="text-2xl font-bold text-emerald-400 mb-1">Finalist</div>
+              <div className="text-xs text-zinc-400 uppercase tracking-wider">RBI NFPC Hackathon</div>
             </div>
             <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/20 text-center">
-              <div className="text-2xl font-bold text-blue-400 mb-1">5+</div>
-              <div className="text-xs text-zinc-400 uppercase tracking-wider">Projects Completed</div>
+              <div className="text-2xl font-bold text-blue-400 mb-1">MasterMind</div>
+              <div className="text-xs text-zinc-400 uppercase tracking-wider">IEEE Reliability Society</div>
             </div>
             <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/20 text-center">
               <div className="text-2xl font-bold text-purple-400 mb-1">5+</div>
-              <div className="text-xs text-zinc-400 uppercase tracking-wider">Hackathons</div>
+              <div className="text-xs text-zinc-400 uppercase tracking-wider">Real-Time Projects Completed</div>
             </div>
             <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/20 text-center">
-              <div className="text-2xl font-bold text-yellow-400 mb-1">8+</div>
-              <div className="text-xs text-zinc-400 uppercase tracking-wider">Certifications</div>
+              <div className="text-2xl font-bold text-yellow-400 mb-1">1500+</div>
+              <div className="text-xs text-zinc-400 uppercase tracking-wider">Skillrack Problems Solved</div>
             </div>
           </div>
         </div>
@@ -49,7 +49,27 @@ export default function Achievements() {
             <span className="text-zinc-100">hackathons --list</span>
           </div>
           
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* RBI NFPC Hackathon */}
+            <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <Trophy className="text-yellow-500" size={20} />
+                  <div>
+                    <h3 className="font-bold text-zinc-200">RBI NFPC Hackathon 2026 - Finalist</h3>
+                    <p className="text-xs text-zinc-500">Reserve Bank of India Innovation Hub</p>
+                  </div>
+                </div>
+                <div className="text-xs text-zinc-400 flex items-center gap-1">
+                  <Calendar size={12} />
+                  2026
+                </div>
+              </div>
+              <p className="text-sm text-zinc-400 leading-relaxed">
+                Shortlisted as a Finalist among 500+ teams, Built a multi-layer AI-powered fraud detection system designed to identify mule accounts involved in laundering illicit funds for Reserve Bank of India Innovation Hub.
+              </p>
+            </div>
+
             {/* Saihackfest Winner */}
             <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
               <div className="flex items-start justify-between mb-3">
@@ -149,26 +169,6 @@ export default function Achievements() {
                 Achieved 5th place among 32 teams at Fikra'23 Entrepreneurship Summit, demonstrating business acumen and innovative solutions.
               </p>
             </div>
-
-            {/* Hackera'25 */}
-            <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <Code className="text-blue-400" size={20} />
-                  <div>
-                    <h3 className="font-bold text-zinc-200">Hackera'25 Participant</h3>
-                    <p className="text-xs text-zinc-500">Sathyabama University - National Level</p>
-                  </div>
-                </div>
-                <div className="text-xs text-zinc-400 flex items-center gap-1">
-                  <Calendar size={12} />
-                  2025
-                </div>
-              </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Participated in national level hackathon organized by Sathyabama University, gaining valuable experience in competitive programming.
-              </p>
-            </div>
           </div>
         </div>
 
@@ -234,8 +234,8 @@ export default function Achievements() {
                 <div className="flex items-start gap-3">
                   <Users size={14} className="text-purple-500 mt-0.5" />
                   <div>
-                    <div className="text-sm font-medium text-zinc-300">College Competitions</div>
-                    <div className="text-xs text-zinc-500">Various coding competitions</div>
+                    <div className="text-sm font-medium text-zinc-300">Inter-College Competitions</div>
+                    <div className="text-xs text-zinc-500">Various business & coding competitions</div>
                   </div>
                 </div>
               </div>
