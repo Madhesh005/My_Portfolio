@@ -1,5 +1,5 @@
 import { TerminalLayout } from "@/components/layout/TerminalLayout";
-import { ExternalLink, Github, ArrowUpRight, ChevronLeft, ChevronRight, Users, Building2, Calendar, MapPin } from "lucide-react";
+import { Github, ArrowUpRight, Users, Building2, Calendar, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Typewriter } from "@/components/terminal/Typewriter";
 
@@ -27,116 +27,6 @@ function CommandBlock({ command, children, delay = 0 }: CommandBlockProps) {
       
       <div className={`border border-zinc-800 rounded-lg p-6 bg-zinc-900/10 font-mono text-sm transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
         {children}
-      </div>
-    </div>
-  );
-}
-
-// Terminal Gallery Component for DefiScore
-function DefiScoreGallery() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Gallery images for DefiScore - 5 snapshots
-  const galleryImages = [
-    { name: "defiscore1.png", src: "/defiscore1.png" },
-    { name: "defiscore2.png", src: "/defiscore2.png" },
-    { name: "defiscore3.png", src: "/defiscore3.png" },
-    { name: "defiscore4.png", src: "/defiscore4.png" },
-    { name: "defiscore5.png", src: "/defiscore5.png" }
-  ];
-
-  const nextSlide = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-      setIsLoading(false);
-    }, 300);
-  };
-
-  const prevSlide = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
-      setIsLoading(false);
-    }, 300);
-  };
-
-  return (
-    <div className="space-y-4">
-      {/* Gallery Display */}
-      <div className="border border-zinc-800 rounded-lg bg-black p-8 min-h-[600px] flex items-center justify-center relative overflow-hidden">
-        {isLoading ? (
-          <div className="text-emerald-500 font-mono text-sm">
-            <Typewriter text="Loading ZK proof verification system..." delay={50} />
-          </div>
-        ) : (
-          <div className="text-center space-y-6 animate-in fade-in duration-300 w-full">
-            <div className="text-emerald-400 font-mono text-lg">
-              Project Gallery
-            </div>
-            <div className="text-zinc-500 font-mono text-sm">
-              Rendering credit scoring protocol...
-            </div>
-            
-            {/* Large Image Display */}
-            <div className="w-full max-w-5xl mx-auto">
-              <img 
-                src={galleryImages[currentSlide].src}
-                alt={`DefiScore Screenshot ${currentSlide + 1}`}
-                className="w-full h-auto max-h-[450px] object-contain border border-zinc-700 rounded shadow-2xl bg-black"
-                onError={(e) => {
-                  // Fallback to placeholder if image fails to load
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                }}
-              />
-              {/* Fallback placeholder */}
-              <div className="hidden w-full h-[450px] bg-zinc-900 border border-zinc-700 rounded">
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-zinc-600 font-mono text-sm text-center space-y-2">
-                    <div>[ZK_PROTOCOL_{String(currentSlide + 1).padStart(2, '0')}]</div>
-                    <div className="text-xs text-zinc-700">
-                      {galleryImages[currentSlide].name}
-                    </div>
-                    <div className="text-xs text-zinc-700 mt-4 max-w-md">
-                      {currentSlide === 0 && "Borrower dashboard with wallet connection"}
-                      {currentSlide === 1 && "Credit score generation and ZK proof system"}
-                      {currentSlide === 2 && "Lender interface with verification tools"}
-                      {currentSlide === 3 && "Smart contract interaction and verification"}
-                      {currentSlide === 4 && "System architecture and protocol flow"}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Navigation */}
-      <div className="flex items-center justify-between text-zinc-500 font-mono text-sm">
-        <button 
-          onClick={prevSlide}
-          className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
-          disabled={isLoading}
-        >
-          <ChevronLeft size={16} />
-          previous
-        </button>
-        
-        <div className="text-zinc-600">
-          {currentSlide + 1} / {galleryImages.length}
-        </div>
-        
-        <button 
-          onClick={nextSlide}
-          className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
-          disabled={isLoading}
-        >
-          next
-          <ChevronRight size={16} />
-        </button>
       </div>
     </div>
   );
@@ -277,16 +167,7 @@ export function DefiScoreCaseStudy({ project }: { project: any }) {
           </div>
         </CommandBlock>
 
-        {/* 5. Project Gallery */}
-        <div className="space-y-4">
-          <div className="text-zinc-500 font-mono">
-            <span className="text-emerald-500 font-bold mr-2">$</span>
-            <Typewriter text="gallery defiscore" delay={30} />
-          </div>
-          <DefiScoreGallery />
-        </div>
-
-        {/* 6. Problem Statement */}
+        {/* 5. Problem Statement */}
         <CommandBlock command="problem defiscore" delay={800}>
           <div className="text-zinc-300 leading-relaxed space-y-4">
             <p>
@@ -320,8 +201,8 @@ export function DefiScoreCaseStudy({ project }: { project: any }) {
           </div>
         </CommandBlock>
 
-        {/* 7. System Architecture */}
-        <CommandBlock command="architecture defiscore" delay={1000}>
+        {/* 6. System Architecture */}
+        <CommandBlock command="architecture defiscore" delay={800}>
           <div className="space-y-4 text-zinc-300">
             <div className="text-blue-400 font-semibold">System Workflow:</div>
             <div className="ml-4 text-sm bg-zinc-900/20 p-3 rounded font-mono">
@@ -354,8 +235,8 @@ export function DefiScoreCaseStudy({ project }: { project: any }) {
           </div>
         </CommandBlock>
 
-        {/* 8. Solution & Implementation */}
-        <CommandBlock command="solution defiscore" delay={1200}>
+        {/* 7. Solution & Implementation */}
+        <CommandBlock command="solution defiscore" delay={1000}>
           <div className="space-y-6 text-zinc-300">
             <div className="space-y-3">
               <div className="text-blue-400 font-semibold">DefiScore introduces a universal on-chain credit scoring mechanism:</div>
@@ -389,8 +270,8 @@ export function DefiScoreCaseStudy({ project }: { project: any }) {
           </div>
         </CommandBlock>
 
-        {/* 9. My Role (Zero-Knowledge Engineering) */}
-        <CommandBlock command="role defiscore" delay={1400}>
+        {/* 8. My Role (Zero-Knowledge Engineering) */}
+        <CommandBlock command="role defiscore" delay={1200}>
           <div className="space-y-4 text-zinc-300">
             <div className="text-purple-400 font-semibold">My Role (Zero-Knowledge Engineering):</div>
             <div className="space-y-2">
@@ -418,8 +299,8 @@ export function DefiScoreCaseStudy({ project }: { project: any }) {
           </div>
         </CommandBlock>
 
-        {/* 10. Outcomes & Impact */}
-        <CommandBlock command="impact defiscore" delay={1600}>
+        {/* 9. Outcomes & Impact */}
+        <CommandBlock command="impact defiscore" delay={1400}>
           <div className="space-y-4 text-zinc-300">
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -476,8 +357,8 @@ export function DefiScoreCaseStudy({ project }: { project: any }) {
           </div>
         </CommandBlock>
 
-        {/* 11. Links */}
-        <CommandBlock command="links defiscore" delay={1800}>
+        {/* 10. Links */}
+        <CommandBlock command="links defiscore" delay={1600}>
           <div className="grid grid-cols-1 gap-4">
             <a 
               href="https://github.com/RVKB2005/DeFiScore-Final" 

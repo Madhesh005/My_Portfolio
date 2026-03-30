@@ -279,7 +279,7 @@ export function ScamShieldCaseStudy({ project }: { project: any }) {
             {/* Performance Metrics */}
             <div className="space-y-3">
               <div className="text-blue-400 font-semibold">📊 Performance Metrics:</div>
-              <div className="grid grid-cols-2 gap-4 ml-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 ml-4">
                 <div className="flex justify-between">
                   <span>• AUC-ROC:</span>
                   <span className="text-emerald-400 font-bold">0.9424</span>
