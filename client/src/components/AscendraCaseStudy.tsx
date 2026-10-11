@@ -253,7 +253,7 @@ export function AscendraCaseStudy({ project }: { project: any }) {
             <div className="ml-4 space-y-3">
               <div className="flex items-start gap-2">
                 <span className="text-emerald-400 mt-1">•</span>
-                <span><strong>Frontend:</strong> Flutter (cross-platform UI), Lottie animations</span>
+                <span><strong>Frontend:</strong> Mobile app with gamification UI, Lottie animations</span>
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-emerald-400 mt-1">•</span>
@@ -273,7 +273,7 @@ export function AscendraCaseStudy({ project }: { project: any }) {
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-emerald-400 mt-1">•</span>
-                <span><strong>Optional:</strong> Redis for session/state caching</span>
+                <span><strong>Optional:</strong> State caching layer</span>
               </div>
             </div>
           </div>

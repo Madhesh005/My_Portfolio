@@ -38,59 +38,29 @@ export interface Internship {
 export const INTERNSHIPS: Internship[] = [
   {
     id: "sprintxplore",
-    company: "SprintXplore Infotech Private Limited",
+    company: "SprintXplore Infotech Private Limited, Chennai",
     role: "Software Development Intern",
     duration: "January 2026 – April 2026",
     type: "Hybrid",
     description: [
-      "Worked on a production-level DeFi project (DeFiScore) focused on privacy-first credit scoring using on-chain data.",
-      "Contributed to a multi-layer architecture combining blockchain indexing, feature engineering, and ML-based scoring.",
-      "Designed and implemented components related to Zero-Knowledge (ZK) proof workflows for privacy-preserving eligibility verification.",
-      "Built data pipelines for extracting and processing on-chain transaction patterns across DeFi protocols.",
-      "Engineered features based on wallet activity, protocol interactions, and behavioral signals.",
-      "Collaborated in a team-based product environment following structured development workflows."
+      "Engineered DeFiScore for Coeffx Technologies, a privacy-preserving credit scoring protocol to evaluate wallet creditworthiness from behavioral data without exposing raw transaction details, enabling undercollateralized DeFi lending.",
+      "Built an AI-powered lead conversion model using XGBoost and SHAP, surfacing the top five conversion drivers and improving sales team decision accuracy through explainable ML insights."
     ],
     projects: ["defiscore"]
   },
   {
     id: "wealth-empires-intern",
-    company: "Wealth Empires",
-    role: "Web Developer Intern",
+    company: "Wealth Empires – Tax & Compliance Advisory",
+    role: "Web Development Intern",
     duration: "September 2025 – October 2025",
     type: "Remote",
     description: [
-      "Developed a responsive business website for Wealth Empires.",
-      "Integrated digital startup tools and compliance automation.",
-      "Collaborated with startup stakeholders to ensure a seamless user experience."
+      "Designed and deployed the company website end-to-end within six weeks.",
+      "Integrated compliance service modules.",
+      "Delivered a responsive user experience across devices.",
+      "Improved Core Web Vitals."
     ],
     projects: ["wealth-empires"]
-  },
-  {
-    id: "iot-intern",
-    company: "IoT Internship",
-    role: "Team-based IoT Development",
-    duration: "June 2025 – July 2025",
-    type: "On-site",
-    description: [
-      "Worked in an offline 19-member team, developing core IoT understanding.",
-      "Implemented real-time embedded systems.",
-      "Mentored school students, improving communication and leadership skills."
-    ],
-    projects: [] // No specific web projects listed for this one yet
-  },
-  {
-    id: "prodigy",
-    company: "Prodigy Infotech",
-    role: "Web Development Intern",
-    duration: "June 2024 – July 2024",
-    type: "Remote",
-    description: [
-      "Successfully completed internship as a Web Developer, enhancing front-end and back-end skills.",
-      "Developed a personal portfolio website showcasing projects and skills.",
-      "Built several JavaScript-based applications improving understanding of DOM manipulation.",
-      "Designed and developed a responsive landing page."
-    ],
-    projects: [] // Removed all project references
   }
 ];
 
@@ -100,10 +70,10 @@ export const PROJECTS: Project[] = [
     id: "scamshield",
     name: "ScamShield",
     shortDescription: "AI-Powered Money Mule Detection System",
-    techStack: ["Python", "Machine Learning", "React", "TensorFlow"],
+    techStack: ["Python", "LightGBM", "XGBoost", "SHAP", "Graph Intelligence"],
     problem: "Money mule accounts are used to move illegal funds across banking systems, making fraud detection extremely complex.",
-    solution: "Multi-layer AI-powered fraud detection system using graph intelligence, temporal behavior modeling, and ensemble ML.",
-    highlights: "RBI NFPC Finalist (Top 12/87), AUC-ROC: 0.9424, 400M+ transactions processed, real-time fraud detection.",
+    solution: "Multi-layer AI-powered fraud detection system using graph intelligence, temporal behavior modeling, and ensemble ML with LightGBM and XGBoost.",
+    highlights: "RBIH NFPC Finalist (Top 12/500+), AUC-ROC: 0.9424, 400M+ transactions processed, 164 engineered features, real-time fraud detection.",
     status: "Live",
     category: "featured",
     collaborators: [
@@ -115,10 +85,10 @@ export const PROJECTS: Project[] = [
     id: "chainvoice",
     name: "ChainVoice",
     shortDescription: "Blockchain-Based Invoice Financing & Verification Platform",
-    techStack: ["Blockchain", "React", "IPFS", "Smart Contracts"],
+    techStack: ["HyperLedger Fabric", "Node.js", "React.js", "IPFS", "Smart Contracts"],
     problem: "India's invoice financing ecosystem suffers from fragmented verification systems and lack of coordination between lenders.",
-    solution: "Hybrid blockchain infrastructure using Hyperledger Fabric and IPFS for secure invoice financing and cross-lender verification.",
-    highlights: "Cryptographic single source of truth, prevents duplicate financing, real-time validation, tamper-evident audit trails.",
+    solution: "Hybrid blockchain infrastructure using HyperLedger Fabric and IPFS for secure invoice financing and cross-lender verification.",
+    highlights: "DeltaBuild 2026 Winner, cryptographic single source of truth, prevents duplicate financing, real-time validation, tamper-evident audit trails.",
     status: "Live",
     category: "featured",
     links: { demo: "https://chainvoice-one.vercel.app/", repo: "https://github.com/Madhesh005/ChainVoice", docs: "https://github.com/Madhesh005/ChainVoice" }
@@ -162,10 +132,10 @@ export const PROJECTS: Project[] = [
     id: "wealth-empires",
     name: "Wealth Empires",
     shortDescription: "Corporate Website",
-    techStack: ["React", "MERN", "TypeScript"],
+    techStack: ["React.js", "Node.js", "Express.js"],
     problem: "Need for a high-performance landing page.",
     solution: "Responsive, Professional Website",
-    highlights: "99/100 Lighthouse score, sub-second load time.",
+    highlights: "Fast load time, responsive design, integrated compliance modules.",
     status: "Live",
     category: "internship",
     company: "Wealth Empires",
@@ -176,10 +146,10 @@ export const PROJECTS: Project[] = [
     id: "defiscore",
     name: "DefiScore",
     shortDescription: "Privacy-Preserving On-Chain Credit Scoring System",
-    techStack: ["Blockchain", "Solidity", "React", "Node.js", "Web3", "Zero-Knowledge Proofs"],
+    techStack: ["Blockchain", "Smart Contracts", "React.js", "Node.js", "XGBoost", "SHAP", "Python"],
     problem: "Current DeFi and traditional credit systems suffer from mandatory over-collateralization, lack of wallet-level reputation, and privacy vulnerabilities.",
     solution: "Decentralized, privacy-first credit scoring protocol using on-chain behavioral data, smart contracts, and zero-knowledge proofs for verifiable creditworthiness.",
-    highlights: "Privacy-preserving credit scoring using ZK proofs, on-chain behavioral analysis, smart contract-based verification, support for undercollateralized lending, cross-protocol reputation system, fully decentralized architecture.",
+    highlights: "Privacy-preserving credit scoring, on-chain behavioral analysis, smart contract-based verification, support for undercollateralized lending, XGBoost and SHAP for explainable ML.",
     status: "In Development",
     category: "internship",
     company: "SprintXplore",
@@ -209,7 +179,7 @@ export const PROJECTS: Project[] = [
     id: "dynamic-todo",
     name: "Dynamic ToDo",
     shortDescription: "Smart Task Manager",
-    techStack: ["React", "LocalStorage", "Typescript"],
+    techStack: ["React.js", "TypeScript"],
     problem: "Standard todo apps lack flexibility in prioritization.",
     solution: "Drag-and-drop interface with dynamic priority sorting.",
     highlights: "Intuitive UX, persistent local storage, Mobile Responsive.",
@@ -223,7 +193,7 @@ export const PROJECTS: Project[] = [
     id: "ascendra",
     name: "Ascendra",
     shortDescription: "Gamified Focus & Digital Well-being System",
-    techStack: ["Flutter", "Firebase", "Node.js", "Gamification Engine", "Analytics"],
+    techStack: ["Firebase", "Node.js", "Gamification Engine", "Analytics"],
     problem: "Students today struggle with excessive phone usage, spending 4–5 hours daily on non-academic applications like social media and gaming. Constant notifications trigger repeated phone checking (50–80 times/day), habitual scrolling reduces focus and study time, late-night usage leads to poor sleep and fatigue, increased stress, anxiety, and lower academic performance. This creates a continuous distraction cycle that is difficult to break using traditional tools.",
     solution: "Ascendra is a behavior-driven digital wellness platform designed to help students reduce screen addiction and build sustainable focus habits through gamification. The system transforms productivity into an engaging experience by allowing users to evolve a digital creature based on their focus sessions, wellness activities, and consistency. Instead of passive tracking, Ascendra actively reinforces positive habits using XP systems, streak logic, and real-time feedback. By combining focus management, wellness tracking, and team-based motivation, Ascendra creates a structured environment that improves attention span, reduces distraction cycles, and promotes long-term digital discipline.",
     highlights: "Evolution-based gamification system, focus + wellness integrated tracking, XP system, streak tracking, and progression logic, team-based streak and motivation system, privacy-first, offline-friendly architecture, real-time productivity and habit feedback.",
@@ -238,10 +208,10 @@ export const PROJECTS: Project[] = [
     id: "pathlens",
     name: "PathLens AI",
     shortDescription: "AI-Powered Career Guidance using SWOT Analysis",
-    techStack: ["React", "Node.js", "Express", "OpenAI API", "NLP", "AI Agent"],
+    techStack: ["React.js", "Node.js", "Express.js", "NLP", "AI Agent"],
     problem: "Students and early-career individuals struggle to choose the right career path due to lack of clarity about their strengths and skill gaps.",
     solution: "AI-driven career guidance system that performs SWOT-based analysis, uses NLP to extract insights, and generates personalized career recommendations with learning roadmaps.",
-    highlights: "AI-powered SWOT analysis engine, resume/document parsing using NLP, career path recommendation system, skill gap analysis + personalized roadmap, OpenAI-powered prompt engineering, downloadable career reports.",
+    highlights: "AI-powered SWOT analysis engine, resume/document parsing using NLP, career path recommendation system, skill gap analysis + personalized roadmap, AI-powered prompt engineering, downloadable career reports.",
     status: "Private Beta",
     category: "upcoming",
     links: { demo: "https://pathlens.ai", repo: "https://github.com/Madhesh005/PathLensAi", docs: "https://github.com/Madhesh005/PathLensAi" }
@@ -249,27 +219,41 @@ export const PROJECTS: Project[] = [
 ];
 
 export const SKILLS = {
-  frontend: [
-    { name: "JavaScript / TypeScript", level: "intermediate" },
-    { name: "React.js", level: "advanced" },
-    { name: "Tailwind CSS", level: "expert" },
+  languages: [
+    { name: "Java", level: "intermediate" },
+    { name: "Python", level: "intermediate" },
+    { name: "JavaScript", level: "intermediate" }
   ],
-  backend: [
-    { name: "Node.js / Express", level: "advanced" },
-    { name: "Python", level: "advanced" },
-    { name: "PostgreSQL", level: "advanced" },
-    { name: "MongoDB", level: "intermediate" }
+  web: [
+    { name: "React.js", level: "intermediate" },
+    { name: "Node.js", level: "intermediate" },
+    { name: "Express.js", level: "intermediate" },
+    { name: "REST API Development", level: "intermediate" }
   ],
-  devops: [
-    { name: "Docker / CI/CD", level: "strong" },
-    { name: "Vercel", level: "strong" },
-    { name: "Render", level: "strong" },
-    { name: "Netlify", level: "strong" }
+  aiml: [
+    { name: "Data Mining", level: "intermediate" },
+    { name: "Generative AI", level: "beginner" },
+    { name: "XGBoost", level: "intermediate" },
+    { name: "LightGBM", level: "intermediate" },
+    { name: "SHAP", level: "intermediate" },
+    { name: "NumPy", level: "intermediate" },
+    { name: "Pandas", level: "intermediate" }
   ],
-  ai: [
-    { name: "LLM Integration", level: "strong" },
-    { name: "RAG Pipelines", level: "beginner" },
-    { name: "LangChain", level: "beginner" }
+  blockchain: [
+    { name: "HyperLedger Fabric", level: "intermediate" },
+    { name: "Pinata IPFS", level: "beginner" },
+    { name: "Smart Contracts", level: "beginner" }
+  ],
+  fundamentals: [
+    { name: "Data Structures & Algorithms", level: "intermediate" },
+    { name: "OOP", level: "intermediate" },
+    { name: "DBMS", level: "intermediate" }
+  ],
+  tools: [
+    { name: "GitHub", level: "intermediate" },
+    { name: "Figma", level: "beginner" },
+    { name: "MySQL", level: "intermediate" },
+    { name: "Firebase", level: "beginner" }
   ]
 };
 

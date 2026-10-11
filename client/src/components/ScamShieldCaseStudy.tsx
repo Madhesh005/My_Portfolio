@@ -222,7 +222,7 @@ export function ScamShieldCaseStudy({ project }: { project: any }) {
             </div>
             <div className="space-y-3 bg-zinc-900/30 p-4 rounded border-l-4 border-yellow-400">
               <div className="text-yellow-400 font-bold text-lg">
-                🏆 RBI NFPC Finalist (Top 12 out of 87 teams)
+                🏆 RBIH NFPC Finalist (Top 12/500+ teams)
               </div>
               <div className="text-zinc-300">
                 RBIH × IIT Delhi National Fraud Prevention Challenge
@@ -273,7 +273,7 @@ export function ScamShieldCaseStudy({ project }: { project: any }) {
           <div className="space-y-6 text-zinc-300">
             {/* Achievement Header */}
             <div className="bg-zinc-900/30 p-4 rounded border-l-4 border-yellow-400">
-              <div className="text-yellow-400 font-bold mb-2">🏆 Achievement: RBI NFPC Finalist (Top 12/87)</div>
+              <div className="text-yellow-400 font-bold mb-2">🏆 Achievement: RBIH NFPC Finalist (Top 12/500+)</div>
             </div>
 
             {/* Performance Metrics */}
@@ -395,7 +395,7 @@ export function ScamShieldCaseStudy({ project }: { project: any }) {
             <div className="space-y-2">
               <div className="flex items-start gap-2">
                 <span className="text-emerald-400 mt-1">✓</span>
-                <span>RBI NFPC Finalist (Top 12/87)</span>
+                <span>RBIH NFPC Finalist (Top 12/500+)</span>
               </div>
               <div className="flex items-start gap-2">
                 <span className="text-emerald-400 mt-1">✓</span>

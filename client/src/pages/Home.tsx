@@ -54,7 +54,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 sm:grid-cols-[100px_1fr] gap-1 sm:gap-2">
                     <span className="text-zinc-500 font-semibold sm:font-normal">Role</span>
                     <span className="text-zinc-300">
-                        <Typewriter text="Aspiring Full-Stack Developer • Software Engineer" delay={20} />
+                        <Typewriter text="Software Engineering Student • Full-Stack & AI Developer" delay={20} />
                     </span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-[100px_1fr] gap-1 sm:gap-2">
@@ -64,16 +64,16 @@ export default function Home() {
                 <div className="grid grid-cols-1 sm:grid-cols-[100px_1fr] gap-1 sm:gap-2">
                     <span className="text-zinc-500 font-semibold sm:font-normal">Summary</span>
                     <span className="text-zinc-400 leading-relaxed">
-                        I am a passionate Full-Stack Developer pursuing B.Tech in Computer Science and Business Systems. Building scalable systems and intuitive interfaces.
+                        Final-year B.Tech Computer Science and Business Systems student with hands-on experience in developing full-stack applications, AI-driven solutions, and blockchain-based systems through internships, hackathons, and real-world projects.
                     </span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-[100px_1fr] gap-1 sm:gap-2">
                     <span className="text-zinc-500 font-semibold sm:font-normal">Focus</span>
-                    <span className="text-emerald-400">MERN Stack Development, AI Integration & Automation</span>
+                    <span className="text-emerald-400">Full-Stack Development, AI/ML Solutions, Blockchain Systems</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-[100px_1fr] gap-1 sm:gap-2">
                     <span className="text-zinc-500 font-semibold sm:font-normal">Open To</span>
-                    <span className="text-zinc-300">Freelance, Full-Stack & AI Development Roles, Collaborations</span>
+                    <span className="text-zinc-300">Software Engineering Internships, Full-Stack Development Roles, Collaborations</span>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@ export default function Home() {
                     <span>featured-skills</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                    {["React.js", "Express", "Node.js", "Postgres", "Python", "Docker", "GitHub Actions", "MySQL", "Flutter", "Java", "MongoDB", "Blockchain", "Decentralized Applications(DApps)"].map((skill) => (
+                    {["React.js", "Node.js", "Express.js", "Python", "Java", "JavaScript", "XGBoost", "LightGBM", "SHAP", "HyperLedger Fabric", "IPFS", "Smart Contracts", "MySQL", "Firebase", "GitHub"].map((skill) => (
                         <span key={skill} className="px-2 sm:px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full text-xs text-zinc-300 hover:border-emerald-500/50 hover:text-emerald-400 transition-colors cursor-default">
                             {skill}
                         </span>

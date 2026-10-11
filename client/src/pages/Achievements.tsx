@@ -24,8 +24,8 @@ export default function Achievements() {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/20 text-center">
-              <div className="text-2xl font-bold text-emerald-400 mb-1">Finalist</div>
-              <div className="text-xs text-zinc-400 uppercase tracking-wider">RBI NFPC Hackathon</div>
+              <div className="text-2xl font-bold text-blue-400 mb-1">Top 12</div>
+              <div className="text-xs text-zinc-400 uppercase tracking-wider">RBIH NFPC Finalist</div>
             </div>
             <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/20 text-center">
               <div className="text-2xl font-bold text-blue-400 mb-1">MasterMind</div>
@@ -50,14 +50,14 @@ export default function Achievements() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* RBI NFPC Hackathon */}
+            {/* RBI NFPC Hackathon - FINALIST */}
             <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <Trophy className="text-yellow-500" size={20} />
+                  <Award className="text-blue-500" size={20} />
                   <div>
-                    <h3 className="font-bold text-zinc-200">RBI NFPC Hackathon 2026 - Finalist</h3>
-                    <p className="text-xs text-zinc-500">Reserve Bank of India Innovation Hub</p>
+                    <h3 className="font-bold text-zinc-200">RBIH NFPC 2026 - Finalist (Top 12/500+)</h3>
+                    <p className="text-xs text-zinc-500">Reserve Bank Innovation Hub</p>
                   </div>
                 </div>
                 <div className="text-xs text-zinc-400 flex items-center gap-1">
@@ -66,38 +66,38 @@ export default function Achievements() {
                 </div>
               </div>
               <p className="text-sm text-zinc-400 leading-relaxed">
-                Shortlisted as a Finalist among 500+ teams, Built a multi-layer AI-powered fraud detection system designed to identify mule accounts involved in laundering illicit funds for Reserve Bank of India Innovation Hub.
+                Qualified as one of the top 12 finalists out of 500+ teams in the Reserve Bank Innovation Hub National Fraud Prevention Challenge. Built ScamShield, a multi-layer AI-powered fraud detection system for identifying money mule accounts.
               </p>
             </div>
 
-            {/* Saihackfest Winner */}
+            {/* DeltaBuild 2026 - WINNER */}
             <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
                   <Trophy className="text-yellow-500" size={20} />
                   <div>
-                    <h3 className="font-bold text-zinc-200">Saihackfest Winner</h3>
-                    <p className="text-xs text-zinc-500">College Internal Hackathon</p>
+                    <h3 className="font-bold text-zinc-200">DeltaBuild 2026 - Winner</h3>
+                    <p className="text-xs text-zinc-500">Blockchain Hackathon</p>
                   </div>
                 </div>
                 <div className="text-xs text-zinc-400 flex items-center gap-1">
                   <Calendar size={12} />
-                  2025
+                  2026
                 </div>
               </div>
               <p className="text-sm text-zinc-400 leading-relaxed">
-                Secured 1st place in college internal hackathon, demonstrating innovative problem-solving and technical excellence among competing teams.
+                Won DeltaBuild 2026 with ChainVoice, a hybrid blockchain infrastructure for invoice financing using HyperLedger Fabric and IPFS. Led team TechTitans to design a system preventing duplicate financing fraud for MSMEs.
               </p>
             </div>
 
-            {/* Phoenix'25 */}
+            {/* Sai Hackfest 2025 - WINNER */}
             <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
                   <Trophy className="text-yellow-500" size={20} />
                   <div>
-                    <h3 className="font-bold text-zinc-200">Phoenix'25 - 1st Place</h3>
-                    <p className="text-xs text-zinc-500">SRM Institute of Science and Technology</p>
+                    <h3 className="font-bold text-zinc-200">Sai Hackfest 2025 - Winner</h3>
+                    <p className="text-xs text-zinc-500">Sri Sairam Engineering College</p>
                   </div>
                 </div>
                 <div className="text-xs text-zinc-400 flex items-center gap-1">
@@ -106,18 +106,38 @@ export default function Achievements() {
                 </div>
               </div>
               <p className="text-sm text-zinc-400 leading-relaxed">
-                Achieved first place at Phoenix'25 hackathon hosted by SRM Institute, showcasing exceptional technical skills and innovation.
+                Secured 1st place in Sai Hackfest 2025, demonstrating innovative problem-solving and technical excellence.
               </p>
             </div>
 
-            {/* i-tekron */}
+            {/* SDG Ideathon - WINNER */}
+            <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <Trophy className="text-yellow-500" size={20} />
+                  <div>
+                    <h3 className="font-bold text-zinc-200">SDG Ideathon - Winner</h3>
+                    <p className="text-xs text-zinc-500">Sustainable Development Goals Challenge</p>
+                  </div>
+                </div>
+                <div className="text-xs text-zinc-400 flex items-center gap-1">
+                  <Calendar size={12} />
+                  2025
+                </div>
+              </div>
+              <p className="text-sm text-zinc-400 leading-relaxed">
+                Won the SDG Ideathon by presenting a solution addressing sustainable development challenges.
+              </p>
+            </div>
+
+            {/* Hack the Horizon 2.0 - FINALIST */}
             <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
                   <Award className="text-gray-400" size={20} />
                   <div>
-                    <h3 className="font-bold text-zinc-200">i-tekron - 2nd Place</h3>
-                    <p className="text-xs text-zinc-500">New Prince Shri Bhavani Engineering College</p>
+                    <h3 className="font-bold text-zinc-200">Hack the Horizon 2.0 - Finalist</h3>
+                    <p className="text-xs text-zinc-500">Inter-College Hackathon</p>
                   </div>
                 </div>
                 <div className="text-xs text-zinc-400 flex items-center gap-1">
@@ -126,47 +146,7 @@ export default function Achievements() {
                 </div>
               </div>
               <p className="text-sm text-zinc-400 leading-relaxed">
-                Secured 2nd place at i-tekron hackathon, demonstrating strong technical competency and collaborative problem-solving skills.
-              </p>
-            </div>
-
-            {/* CPS Summit */}
-            <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <Award className="text-gray-400" size={20} />
-                  <div>
-                    <h3 className="font-bold text-zinc-200">CPS Summit 2k25 Ideathon - 2nd Prize</h3>
-                    <p className="text-xs text-zinc-500">MGR University - IT Department</p>
-                  </div>
-                </div>
-                <div className="text-xs text-zinc-400 flex items-center gap-1">
-                  <Calendar size={12} />
-                  2025
-                </div>
-              </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Won 2nd prize in ideathon conducted by Information Technology Department of MGR University, showcasing innovative thinking and presentation skills.
-              </p>
-            </div>
-
-            {/* Fikra'23 */}
-            <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <Award className="text-orange-400" size={20} />
-                  <div>
-                    <h3 className="font-bold text-zinc-200">Fikra'23 - 5th Place</h3>
-                    <p className="text-xs text-zinc-500">Entrepreneurship Summit</p>
-                  </div>
-                </div>
-                <div className="text-xs text-zinc-400 flex items-center gap-1">
-                  <Calendar size={12} />
-                  2023
-                </div>
-              </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Achieved 5th place among 32 teams at Fikra'23 Entrepreneurship Summit, demonstrating business acumen and innovative solutions.
+                Reached finalist stage at Hack the Horizon 2.0, showcasing strong technical competency and innovative solutions.
               </p>
             </div>
           </div>
@@ -197,15 +177,22 @@ export default function Achievements() {
                 <div className="flex items-start gap-3">
                   <ExternalLink size={14} className="text-emerald-500 mt-0.5" />
                   <div>
-                    <div className="text-sm font-medium text-zinc-300">Networking Basics</div>
-                    <div className="text-xs text-zinc-500">Cisco Network Academy</div>
+                    <div className="text-sm font-medium text-zinc-300">Introduction to AI & Deep Learning</div>
+                    <div className="text-xs text-zinc-500">Infosys Springboard</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <ExternalLink size={14} className="text-emerald-500 mt-0.5" />
                   <div>
-                    <div className="text-sm font-medium text-zinc-300">FullStack Web Development</div>
-                    <div className="text-xs text-zinc-500">Zero Solutions</div>
+                    <div className="text-sm font-medium text-zinc-300">Java & DBMS</div>
+                    <div className="text-xs text-zinc-500">NPTEL</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <ExternalLink size={14} className="text-emerald-500 mt-0.5" />
+                  <div>
+                    <div className="text-sm font-medium text-zinc-300">Introduction to Blockchain</div>
+                    <div className="text-xs text-zinc-500">IEEE BLP</div>
                   </div>
                 </div>
               </div>
@@ -243,32 +230,6 @@ export default function Achievements() {
           </div>
         </div>
 
-        {/* NPTEL Certifications */}
-        <div className="space-y-6">
-          <div className="text-zinc-500">
-            <span className="text-emerald-500 font-bold mr-2">$</span>
-            <span className="text-zinc-100">nptel --certifications</span>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/10 text-center">
-              <div className="text-lg font-bold text-blue-400 mb-2">Cloud Computing</div>
-              <div className="text-sm text-zinc-400 mb-1">Completed Certification</div>
-              <div className="text-xs text-emerald-400 font-mono">Score: 61%</div>
-            </div>
-            <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/10 text-center">
-              <div className="text-lg font-bold text-yellow-400 mb-2">Programming in Java</div>
-              <div className="text-sm text-zinc-400 mb-1">Elite Certification</div>
-              <div className="text-xs text-emerald-400 font-mono">Score: 62%</div>
-            </div>
-            <div className="border border-zinc-800 rounded-lg p-4 bg-zinc-900/10 text-center">
-              <div className="text-lg font-bold text-purple-400 mb-2">Database Systems</div>
-              <div className="text-sm text-zinc-400 mb-1">Completed Certification</div>
-              <div className="text-xs text-emerald-400 font-mono">Score: 55%</div>
-            </div>
-          </div>
-        </div>
-
         {/* Coordination & Volunteering */}
         <div className="space-y-6">
           <div className="text-zinc-500">
@@ -282,37 +243,19 @@ export default function Achievements() {
                 <div className="flex items-center gap-3">
                   <Users className="text-emerald-500" size={20} />
                   <div>
-                    <h3 className="font-bold text-zinc-200">Brain2Business Coordinator</h3>
-                    <p className="text-xs text-zinc-500">IEEE TEMS SEC SB - Entrepreneurial Visions</p>
+                    <h3 className="font-bold text-zinc-200">IEEE Reliability Society Sairam Chapter – MasterMind</h3>
+                    <p className="text-xs text-zinc-500">Co-Organizer & Technical Lead</p>
                   </div>
                 </div>
                 <div className="text-xs text-zinc-400 flex items-center gap-1">
                   <Calendar size={12} />
-                  2025
+                  2025 – Present
                 </div>
               </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Coordinated Brain2Business event focusing on entrepreneurial visions, organized by IEEE TEMS SEC SB.
-              </p>
-            </div>
-
-            <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <Users className="text-emerald-500" size={20} />
-                  <div>
-                    <h3 className="font-bold text-zinc-200">Winspire 1.0 Coordinator</h3>
-                    <p className="text-xs text-zinc-500">IEEE TEMS SEC SB</p>
-                  </div>
-                </div>
-                <div className="text-xs text-zinc-400 flex items-center gap-1">
-                  <Calendar size={12} />
-                  2025
-                </div>
+              <div className="text-sm text-zinc-400 leading-relaxed space-y-2">
+                <p>• Co-organized SustainTech 2026, a two-day technical bootcamp.</p>
+                <p>• Co-organized Intellect Hack 2026, a 6-hour hackathon with around 60 participating teams.</p>
               </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Served as coordinator for Winspire 1.0 event conducted by IEEE TEMS SEC SB, managing event logistics and participant engagement.
-              </p>
             </div>
 
             <div className="border border-zinc-800 rounded-lg p-5 bg-zinc-900/10 hover:bg-zinc-900/20 transition-colors">
@@ -320,18 +263,19 @@ export default function Achievements() {
                 <div className="flex items-center gap-3">
                   <Users className="text-blue-500" size={20} />
                   <div>
-                    <h3 className="font-bold text-zinc-200">Business Pitch Volunteer</h3>
-                    <p className="text-xs text-zinc-500">Cognizant (CTS) - Industry Experts</p>
+                    <h3 className="font-bold text-zinc-200">IEEE TEMS Society – Website & Event Member</h3>
+                    <p className="text-xs text-zinc-500">Web Maintenance & Event Volunteer</p>
                   </div>
                 </div>
                 <div className="text-xs text-zinc-400 flex items-center gap-1">
                   <Calendar size={12} />
-                  2025
+                  2024 – 2025
                 </div>
               </div>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Volunteered in business pitch event for industry experts across various organizations, organized by Cognizant Technology Solutions.
-              </p>
+              <div className="text-sm text-zinc-400 leading-relaxed space-y-2">
+                <p>• Maintained and managed the IEEE TEMS official website.</p>
+                <p>• Volunteered in organizing chapter events.</p>
+              </div>
             </div>
           </div>
         </div>
